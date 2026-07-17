@@ -268,7 +268,7 @@
   .detail-desc{color:var(--cream-dim); font-size:15px; font-weight:300; max-width:520px;}
   .detail-h{font-size:14px; font-weight:600; margin:30px 0 14px; color:var(--cream); font-family:var(--mono); letter-spacing:0.5px;}
   .skill-badges{display:flex; flex-wrap:wrap; gap:10px;}
-  .skill-badge{background:rgba(255,255,255,0.03); border:1px solid rgba(215,25,32,0.45); color:var(--cream); font-size:13px; padding:8px 16px; border-radius:20px; font-family:var(--mono);}
+  .skill-badge{background:rgba(255,255,255,0.03); border:1px solid rgba(215,25,32,0.45); color:var(--cream); font-size:13px; font-weight:500; padding:8px 16px; border-radius:20px; font-family:var(--display);}
   .lab-note{display:flex; gap:10px; align-items:flex-start; background:rgba(215,25,32,0.08); border:1px solid rgba(215,25,32,0.25); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--cream-dim); margin-top:20px; font-weight:300;}
   .lab-note b{color:var(--cream); font-weight:600;}
   .employer-note{display:flex; gap:10px; align-items:flex-start; background:rgba(0,194,255,0.07); border:1px solid rgba(0,194,255,0.3); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--cream-dim); margin:18px 0; font-weight:300;}
@@ -309,6 +309,11 @@
     .price-card{position:static;}
     .tabs{width:100%; justify-content:space-between;}
     .tab-link{padding:8px 10px; font-size:12px;}
+    .brand-logo{height:52px;}
+    .hero-grid{justify-content:center;}
+    .badge-card{margin:0 auto;}
+    .stat-row{justify-content:center;}
+    .contact-row{justify-content:center;}
   }
 </style>
 </head>
@@ -346,6 +351,30 @@
         <div class="trust-item"><div class="n">Apple · DoD</div><div class="l">شكر رسمي على أبحاث أمنية</div></div>
       </div>
     </div>
+
+    <!-- LEVEL 0 CARD — FREE -->
+    <article class="level-card" onclick="ttOpen('l0')" style="border-color:rgba(0,194,255,0.35);">
+      <div class="level-head">
+        <div>
+          <span class="level-tag" style="background:var(--cyan); color:var(--ink);">مجاني</span>
+          <div class="level-title">أساسيات Linux — مجاني بالكامل</div>
+          <div class="level-sub">تعرف على Linux قبل ما تقرر تدخل أي مسار مدفوع</div>
+        </div>
+        <div class="level-price">
+          <div class="now mono" style="color:var(--cyan);">مجاني</div>
+          <div class="note">عبر تليغرام</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="topics-preview">
+          <span>أوامر Linux الأساسية</span><span>نظام الملفات</span><span>الصلاحيات</span><span>إدارة الحزم</span>
+        </div>
+        <div class="level-footer">
+          <div class="who">📣 قناة تليغرام · 📱 مناسب للموبايل والويب</div>
+          <button class="btn details" onclick="event.stopPropagation(); ttOpen('l0')">التفاصيل الكاملة ↗</button>
+        </div>
+      </div>
+    </article>
 
     <!-- LEVEL 1 CARD -->
     <article class="level-card" onclick="ttOpen('l1')">
@@ -424,21 +453,22 @@
     <article class="level-card" onclick="ttOpen('l4')">
       <div class="level-head">
         <div>
-          <span class="level-tag alt" style="color:var(--maroon)">المستوى 4 — Advanced</span>
-          <div class="level-title">Advanced Red Team Diploma</div>
-          <div class="level-sub">المسار الاحترافي الكامل نحو Red Team</div>
+          <span class="level-tag">المستوى 4</span>
+          <div class="level-title">الدبلومة الاحترافية في الأمن السيبراني والاختراق الأخلاقي</div>
+          <div class="level-sub">برنامج متكامل من 6 كورسات — أساس قوي قبل التخصص الاحترافي</div>
         </div>
         <div class="level-price">
-          <div class="now mono" style="font-size:18px; color:var(--cream);">قريبًا</div>
-          <div class="note">تواصل للاستفسار</div>
+          <div class="old mono">$450</div>
+          <div class="now mono">$375</div>
+          <div class="note">خصم لأول 20 شخص فقط</div>
         </div>
       </div>
       <div class="level-body">
         <div class="topics-preview">
-          <span>برمجة (Python/C++/PHP)</span><span>Kali Professional</span><span>Web Security متقدم</span><span>Red Team Ops</span>
+          <span>Linux Basics</span><span>Networking Basics</span><span>Web Attacks</span><span>Programming</span><span>شهادة أكسفورد معتمدة</span>
         </div>
         <div class="level-footer">
-          <div class="who">📹 50–60 ساعة · 🤝 دعم سنة كاملة</div>
+          <div class="who">📹 60–70 ساعة · 6 كورسات متكاملة</div>
           <button class="btn details" onclick="event.stopPropagation(); ttOpen('l4')">التفاصيل الكاملة ↗</button>
         </div>
       </div>
@@ -743,6 +773,9 @@
           <h3 class="detail-h">الشهادة بعد إتمام الدورة</h3>
           <p class="detail-desc" id="dCert" style="max-width:100%;"></p>
 
+          <div id="dJobsBlock"></div>
+          <div id="dCertPrepBlock"></div>
+
           <div id="dLabNote"></div>
 
           <h3 class="detail-h">الأسئلة الشائعة</h3>
@@ -766,6 +799,22 @@
 
 <script>
 const LEVELS = {
+  l0:{
+    tag:"مجاني · تجربة تعريفية", title:"أساسيات Linux — مجاني بالكامل",
+    desc:"تعرف على نظام Linux خطوة بخطوة من الصفر — قبل ما تدخل أي مسار مدفوع، جرب وتأكد إنه المجال يعجبك.",
+    price:"مجاني", meta:"عبر قناة تليغرام · وصول دائم",
+    ctaText:"مرحبا، اريد الانضمام لقناة أساسيات Linux",
+    ctaUrl:"https://t.me/+R1gBmMuD4OtkYzUy",
+    ctaLabel:"انضم للقناة 📣",
+    audience:["المبتدئين تمامًا","أي شخص يريد يتعرف على Linux قبل الالتزام بمسار مدفوع","محبي التعلم الذاتي"],
+    skills:["Linux Basics","Command Line","File System","Permissions","Package Management"],
+    certificate:"محتوى تعريفي مجاني بالكامل — بدون شهادة رسمية.",
+    faq:[
+      {q:"هل هذا الكورس فعلاً مجاني بالكامل؟", a:"نعم، محتوى أساسيات Linux مجاني 100%، الهدف تتعرف على المجال قبل ما تقرر تدخل مسار مدفوع."},
+      {q:"وين أوصل للمحتوى؟", a:"عبر قناة تليغرام مخصصة — تنضم وتوصلك كل الدروس والتفاصيل هناك."},
+      {q:"هل يشتغل على الموبايل؟", a:"إي، المحتوى مناسب للمتابعة من الموبايل أو الحاسوب، حسب اللي يريحك."}
+    ]
+  },
   l1:{
     tag:"مبتدئ · المستوى 1", title:"أساسيات الأمن السيبراني واكتشاف الثغرات",
     desc:"ابدأ من الصفر: أساسيات الشبكات، الحاسوب، Linux، والأمن السيبراني — قبل أي شي متقدم.",
@@ -814,20 +863,21 @@ const LEVELS = {
     ]
   },
   l4:{
-    tag:"متقدم · المستوى 4", title:"Advanced Red Team Diploma",
-    desc:"المسار الاحترافي الكامل نحو Red Team — من الشبكات والبرمجة إلى الاختراق المتقدم.",
-    price:"يُعلن لاحقًا", meta:"50–60 ساعة مسجّلة · دعم سنة كاملة",
-    ctaText:"مرحبا، اريد الاستفسار عن Advanced Red Team Diploma",
-    ctaLabel:"استفسر عن السعر",
-    audience:["موظفي IT وفرق الأمن السيبراني","خريجي المستوى الثاني الراغبين بالتعمق","المتخصصين اللي يريدون التخصص في Red Team"],
-    employerNote:"مفضّل بشكل خاص لموظفي الشركات والمؤسسات الراغبين برفع مهاراتهم إلى مستوى Red Team احترافي داخل بيئة عملهم.",
-    skills:["Python","C++","JavaScript","Kali Professional","Advanced Web Security","Red Team Ops","OSINT مؤسسي"],
-    certificate:"دبلوم Advanced Red Team Diploma من TechTalent Academy.",
-    lab:"كل تدريبات الهندسة الاجتماعية، تحليل التجاوز، وOSINT تُنفَّذ حصريًا داخل بيئة مختبرية معزولة ومرخّصة (Authorized Lab Environment) — الهدف تعليمي ودفاعي بالكامل.",
+    tag:"مبتدئ → متوسط · المستوى 4", title:"الدبلومة الاحترافية في الأمن السيبراني والاختراق الأخلاقي",
+    desc:"برنامج تدريبي متكامل من 6 كورسات مسجّلة (60–70 ساعة)، صُمم لبناء أساس قوي في أمن المعلومات، تحليل الثغرات، الشبكات، البرمجة، وأنظمة Linux.",
+    price:"375$", oldPrice:"450$", meta:"60–70 ساعة مسجّلة · 6 كورسات متكاملة",
+    deadline:"🎉 السعر بعد الخصم 375$ لأول 20 شخص فقط — بعدها يرجع السعر الأصلي 450$",
+    ctaText:"مرحبا، اريد التسجيل بالدبلومة الاحترافية في الامن السيبراني",
+    audience:["المبتدئين","المستوى المتوسط","الراغبين ببناء أساس شامل قبل التخصص"],
+    skills:["Linux Basics","Networking Basics","Web Attacks & Vulnerability Discovery","Programming (C++/HTML/JS/Python)","Social Engineering & Device Security","Dark Web Concepts (بحث وتحليل فقط)","CTF Labs"],
+    certificate:"شهادة إتمام بعد اجتياز الاختبار النهائي، بالإضافة إلى شهادة من كلية أكسفورد معتمدة دوليًا. تشمل الدبلومة 60–70 ساعة تدريب، 6 كورسات متكاملة، مختبرات CTF، ومشاريع عملية.",
+    jobs:["Junior Penetration Tester","Bug Bounty Hunter","SOC Analyst – Level 1","Cybersecurity Analyst","Network Security Technician","Web Application Security Tester","Python Automation Developer","CTF Player / Lab Assistant","Social Engineering & Awareness Specialist"],
+    certPrep:["CompTIA Security+","CompTIA Network+","Linux Essentials (LPI)","eJPT","CEH","BSCP"],
     faq:[
-      {q:"هل لازم أكمل المستويات السابقة أول؟", a:"يفضّل تكون أنهيت أساسيات اختبار الاختراق (المستوى 1 أو 2) قبل هذا الدبلوم لأنه مبني على مستوى متقدم."},
-      {q:"شنو مدة الدعم بعد الدبلوم؟", a:"دعم ومتابعة لمدة سنة كاملة بعد إنهاء الدبلوم."},
-      {q:"شلون أعرف السعر؟", a:"السعر رح يُعلن قريبًا — تواصل معنا على واتساب وننبهك فور الإعلان."}
+      {q:"هل الدبلومة مناسبة للمبتدئين؟", a:"نعم، مصممة للمبتدئين والمستوى المتوسط، وتبني أساس قوي يسهّل الاستمرار بمسار احترافي بعدها."},
+      {q:"شنو طرق الدفع المتوفرة؟", a:"زين كاش، ماستر كارد، عملات رقمية USDT، حوالة مكتبية، أو ويسترن يونيون."},
+      {q:"شنو مدة صلاحية الخصم؟", a:"السعر بعد الخصم 375$ (بدل 450$) متوفر لأول 20 شخص فقط، وبعدها يرجع السعر الأصلي."},
+      {q:"هل الشهادات العالمية مضمونة بعد الدبلومة؟", a:"لا، الدبلومة تحضّرك وتبني مهاراتك للتقدم لهذي الشهادات، لكن الحصول عليها يتطلب التقديم للامتحان الرسمي لكل شهادة بشكل منفصل."}
     ]
   }
 };
@@ -842,6 +892,13 @@ function ttOpen(id){
   document.getElementById('dAudience').innerHTML = (L.audience || []).map(a=>`<span class="skill-badge">${a}</span>`).join('');
   document.getElementById('dSkills').innerHTML = L.skills.map(s=>`<span class="skill-badge">${s}</span>`).join('');
   document.getElementById('dCert').textContent = L.certificate || '';
+
+  document.getElementById('dJobsBlock').innerHTML = (L.jobs && L.jobs.length)
+    ? `<h3 class="detail-h">الوظائف الممكنة بعد الدورة</h3><div class="skill-badges">${L.jobs.map(j=>`<span class="skill-badge">${j}</span>`).join('')}</div>` : '';
+
+  document.getElementById('dCertPrepBlock').innerHTML = (L.certPrep && L.certPrep.length)
+    ? `<h3 class="detail-h">شهادات عالمية يمكن التحضير لها بعدها</h3><div class="skill-badges">${L.certPrep.map(c=>`<span class="skill-badge">${c}</span>`).join('')}</div>` : '';
+
   document.getElementById('dLabNote').innerHTML = L.lab
     ? `<div class="lab-note">🛡️ <span><b>ملاحظة مهمة:</b> ${L.lab}</span></div>` : '';
   document.getElementById('dFaq').innerHTML = L.faq.map((f,i)=>`
@@ -855,10 +912,11 @@ function ttOpen(id){
     ? `<div><span class="old-price mono">${L.oldPrice}</span><span class="price mono">${L.price}</span></div>`
     : `<div class="price mono">${L.price}</div>`;
   const deadlineHtml = L.deadline ? `<div class="deadline">${L.deadline}</div>` : '';
+  const ctaHref = L.ctaUrl ? L.ctaUrl : `https://wa.me/9647764271151?text=${encodeURIComponent(L.ctaText)}`;
   document.getElementById('dPriceCard').innerHTML = `
     ${priceHtml}
     <div class="meta-line">${L.meta}</div>
-    <a class="btn" href="https://wa.me/9647764271151?text=${encodeURIComponent(L.ctaText)}" target="_blank" rel="noopener">${L.ctaLabel || 'سجّل الآن'}</a>
+    <a class="btn" href="${ctaHref}" target="_blank" rel="noopener">${L.ctaLabel || 'سجّل الآن'}</a>
     ${deadlineHtml}
   `;
   document.getElementById('modalOverlay').classList.add('open');
