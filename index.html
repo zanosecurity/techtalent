@@ -63,6 +63,14 @@
   .brand-logo{height:100px; width:auto; display:block;}
   .brand-mark .dot{width:8px; height:8px; border-radius:50%; background:var(--cyan); box-shadow:0 0 10px var(--cyan);}
 
+  .logo-banner{
+    display:flex; align-items:center; justify-content:center; gap:20px;
+    background:var(--ink-2); border:1px solid var(--line); border-radius:14px;
+    padding:20px 28px; margin:0 auto 40px; max-width:600px; flex-wrap:wrap;
+  }
+  .logo-banner h2{font-size:clamp(18px,2.6vw,23px); font-weight:700; margin:0;}
+  .logo-banner .brand-logo{height:38px;}
+
   .tabs{display:flex; gap:6px; background:rgba(255,255,255,0.03); padding:4px; border-radius:10px;}
   .tab-link{
     font-family:var(--mono); font-size:13px; color:var(--cream-dim); text-decoration:none;
@@ -215,6 +223,18 @@
   .final-cta h2{font-size:clamp(22px,4vw,28px); font-weight:700; margin-bottom:14px;}
   .final-cta p{color:var(--cream-dim); max-width:480px; margin:0 auto 26px; font-weight:300;}
 
+  .wall-grid{column-count:2; column-gap:18px;}
+  @media(max-width:760px){.wall-grid{column-count:1;}}
+  .wall-card{
+    break-inside:avoid; margin-bottom:18px; background:var(--card-bg); border:1px solid var(--line);
+    border-radius:12px; padding:20px 22px;
+  }
+  .wall-card .quote-mark{color:var(--coral); font-size:22px; line-height:1; margin-bottom:8px; display:block; font-family:Georgia,serif;}
+  .wall-card .wall-txt{font-size:13.5px; color:var(--cream-dim); font-weight:300; line-height:1.8;}
+  .wall-card .wall-name{margin-top:12px; font-size:13px; font-weight:600; color:var(--cyan);}
+  .testi-shot{border-radius:10px; overflow:hidden; margin-bottom:14px; border:1px solid var(--line); background:#fff;}
+  .testi-shot img{width:100%; display:block;}
+
   /* =====================================================
      CORPORATE TAB
      ===================================================== */
@@ -272,6 +292,8 @@
   .lab-note{display:flex; gap:10px; align-items:flex-start; background:rgba(215,25,32,0.08); border:1px solid rgba(215,25,32,0.25); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--cream-dim); margin-top:20px; font-weight:300;}
   .lab-note b{color:var(--cream); font-weight:600;}
   .employer-note{display:flex; gap:10px; align-items:flex-start; background:rgba(0,194,255,0.07); border:1px solid rgba(0,194,255,0.3); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--cream-dim); margin:18px 0; font-weight:300;}
+  .reco-banner{display:flex; align-items:center; gap:8px; background:rgba(0,194,255,0.08); border:1px solid rgba(0,194,255,0.3); border-radius:8px; padding:10px 14px; font-size:12.5px; color:var(--cream); margin-bottom:16px; font-weight:400;}
+  .reco-banner b{color:var(--cyan); font-weight:600;}
   .employer-note b{color:var(--cyan); font-weight:600;}
   .accordion-item{border:1px solid var(--line); border-radius:10px; margin-bottom:10px; overflow:hidden; background:rgba(255,255,255,0.02);}
   .accordion-q{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 20px; cursor:pointer; font-size:14.5px; font-weight:600; user-select:none;}
@@ -321,8 +343,9 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand-mark">
+    <div class="brand-mark" style="flex-direction:column; align-items:flex-start; gap:3px; max-width:220px;">
       <img src="logo.png" alt="TechTalent Academy" class="brand-logo">
+      <span style="font-family:var(--display); font-size:10.5px; font-weight:300; line-height:1.4; color:var(--cream-dim); letter-spacing:0.2px;">من الشغف إلى الاحتراف بالأمن السيبراني</span>
     </div>
     <div class="tabs">
       <a class="tab-link is-active" href="#courses">الدورات المتاحة</a>
@@ -334,13 +357,89 @@
 </nav>
 
 <!-- =====================================================
+     MEGA HERO
+     ===================================================== -->
+<header class="page-section" style="padding-top:72px; border-top:none;">
+  <div class="wrap" style="text-align:center; max-width:760px;">
+    <div class="eyebrow" style="justify-content:center;">TechTalent Academy — Cybersecurity Training</div>
+    <h1 style="font-size:clamp(28px,4.5vw,42px); font-weight:700; line-height:1.4; margin-bottom:18px;">من الشغف إلى الاحتراف —<br>مسارك بالأمن السيبراني يبدأ هنا</h1>
+    <p style="color:var(--cream-dim); font-size:16px; font-weight:300; max-width:560px; margin:0 auto 28px;">عندك شغف بالتكنولوجيا؟ TechTalent Academy تبني عندك المهارة والمسار الواضح، بمحتوى عربي عراقي وتدريب عملي حقيقي من الصفر لين الاحتراف.</p>
+    <a class="btn" href="#courses-list">ابدأ رحلتك الآن ⌄</a>
+  </div>
+</header>
+
+<!-- =====================================================
+     WHO IT'S FOR
+     ===================================================== -->
+<section class="page-section">
+  <div class="wrap">
+    <div class="section-head" style="margin:0 auto 40px; text-align:center; max-width:600px;">
+      <div class="eyebrow" style="justify-content:center;">Who It's For</div>
+      <h2>هذه الأكاديمية صُممت من أجلك</h2>
+    </div>
+    <div class="corp-grid">
+      <div class="corp-card" style="text-align:center;">
+        <img src="icons/persona-student.png" alt="طالب أو خريج جديد" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
+        <div class="corp-title">طالب أو خريج جديد</div>
+        <div class="corp-desc">تبحث عن مستقبل واعد في الأمن السيبراني؟</div>
+      </div>
+      <div class="corp-card" style="text-align:center;">
+        <img src="icons/persona-employee.png" alt="موظف تقني أو إداري" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
+        <div class="corp-title">موظف تقني أو إداري</div>
+        <div class="corp-desc">تريد تغيير مساراك المهني نحو مجال مطلوب عالميًا؟</div>
+      </div>
+      <div class="corp-card" style="text-align:center;">
+        <img src="icons/persona-tech.png" alt="شغوف بالتقنية" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
+        <div class="corp-title">شغوف بالتقنية</div>
+        <div class="corp-desc">وتريد تتعلم مجال يمنحك فرص فعلية بالسوق؟</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     WHY TECHTALENT
+     ===================================================== -->
+<section class="page-section">
+  <div class="wrap">
+    <div class="section-head" style="margin:0 auto 40px; text-align:center; max-width:600px;">
+      <div class="eyebrow" style="justify-content:center;">Why TechTalent</div>
+      <h2>ليش المئات يختارون TechTalent Academy؟</h2>
+    </div>
+    <div class="corp-includes" style="margin-bottom:0;">
+      <ul>
+        <li>محتوى احترافي باللغة العربية</li>
+        <li>مسارات واضحة ومترابطة من الصفر للاحتراف</li>
+        <li>تطبيق عملي 100% داخل بيئات ومختبرات حقيقية</li>
+        <li>مدرّبة معتمدة (eWPTX v2) بخبرة ميدانية حقيقية</li>
+        <li>دعم ومتابعة مباشرة بعد كل مسار</li>
+        <li>شهادة إتمام لكل مسار تدريبي</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     ADVISOR CTA
+     ===================================================== -->
+<section class="page-section">
+  <div class="wrap">
+    <div class="corp-cta">
+      <h3>مو متأكد من وين تبدأ؟</h3>
+      <p>راسلنا على واتساب واحصل على توجيه شخصي يساعدك تختار المسار المناسب حسب هدفك ومستواك الحالي.</p>
+      <a class="btn" href="https://wa.me/9647764271151?text=مرحبا، ما اعرف من وين ابدأ، ممكن مساعدة؟" target="_blank" rel="noopener">تواصل معنا الآن</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
      TAB 2 — COURSES
      ===================================================== -->
 <section class="page-section" id="courses">
   <div class="wrap">
-    <div class="eyebrow">Choose Your Path</div>
+    <div class="eyebrow" id="courses-list">Choose Your Path</div>
     <div class="section-head">
-      <h2>الدورات المتاحة</h2>
+      <h2>برامجنا الأكثر طلبًا</h2>
       <p>أربعة مسارات مبنية على تجربة تدريب أكثر من 200 متدرب — اضغط على أي مسار لتشوف تفاصيله الكاملة.</p>
     </div>
 
@@ -348,6 +447,8 @@
       <div class="wrap" style="padding:0;">
         <div class="trust-item"><div class="n">200+</div><div class="l">متدرب تم تخريجهم</div></div>
         <div class="trust-item"><div class="n">149K+</div><div class="l">متابع @zano_security</div></div>
+        <div class="trust-item"><div class="n">4+</div><div class="l">مسارات تدريبية</div></div>
+        <div class="trust-item"><div class="n">eWPTX v2</div><div class="l">مدرّبة معتمدة</div></div>
         <div class="trust-item"><div class="n">Apple · DoD</div><div class="l">شكر رسمي على أبحاث أمنية</div></div>
       </div>
     </div>
@@ -439,6 +540,7 @@
         </div>
       </div>
       <div class="level-body">
+        <div class="reco-banner">🎯 <span><b>يُنصح به الآن</b> للمبتدئين وطلاب الأمن السيبراني.</span></div>
         <div class="topics-preview">
           <span>🔴 مباشر عبر Google Meet</span><span>📹 نسخة مسجّلة بـ 149$</span><span>شهادة أكسفورد للمتفوقين</span>
         </div>
@@ -464,6 +566,7 @@
         </div>
       </div>
       <div class="level-body">
+        <div class="reco-banner">👔 <span><b>يُنصح به</b> للموظفين ولمستوى متوسط.</span></div>
         <div class="topics-preview">
           <span>Linux Basics</span><span>Networking Basics</span><span>Web Attacks</span><span>Programming</span><span>شهادة أكسفورد معتمدة</span>
         </div>
@@ -742,9 +845,29 @@
 </section>
 
 <footer>
-  <div class="wrap">
-    <div>TechTalent Academy — مبادرة تدريبية في الأمن السيبراني</div>
-    <div class="mono" style="margin-top:6px;">@zano_security</div>
+  <div class="wrap" style="display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; text-align:right; margin-bottom:24px;">
+    <div style="max-width:280px;">
+      <div style="font-weight:700; color:var(--cream); margin-bottom:8px;">TechTalent Academy</div>
+      <div style="font-size:12.5px;">مبادرة تدريبية في الأمن السيبراني، من الأساسيات إلى الاحتراف.</div>
+    </div>
+    <div>
+      <div style="font-family:var(--mono); font-size:11px; color:var(--coral); letter-spacing:1px; margin-bottom:10px;">ACADEMY</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+        <a href="#about" style="color:var(--cream-dim); text-decoration:none;">من نحن</a>
+        <a href="#corporate" style="color:var(--cream-dim); text-decoration:none;">تدريب المؤسسات</a>
+        <a href="mailto:zainab.ali.hadi1999@gmail.com" style="color:var(--cream-dim); text-decoration:none;">تواصل معنا</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--mono); font-size:11px; color:var(--coral); letter-spacing:1px; margin-bottom:10px;">FOLLOW US</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+        <a href="https://instagram.com/zano_security" target="_blank" rel="noopener" style="color:var(--cream-dim); text-decoration:none;">Instagram — @zano_security</a>
+        <a href="https://wa.me/9647764271151" target="_blank" rel="noopener" style="color:var(--cream-dim); text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="border-top:1px solid var(--line); padding-top:20px; text-align:center;">
+    <div class="mono" style="font-size:11.5px; opacity:.7;">© 2026 TechTalent Academy — كل الحقوق محفوظة</div>
   </div>
 </footer>
 
@@ -782,10 +905,7 @@
           <div id="dFaq"></div>
 
           <h3 class="detail-h">آراء المتدربين</h3>
-          <div class="testimonial-placeholder">
-            <div class="icn">💬</div>
-            <p>آراء المتدربين لهذا المسار قريبًا.</p>
-          </div>
+          <div id="dTestimonials"></div>
         </div>
 
         <div class="detail-sidebar">
@@ -850,6 +970,7 @@ const LEVELS = {
     price:"190$", oldPrice:"210$", meta:"40–50 ساعة · 10–15 مقعد فقط",
     deadline:"⏰ آخر تسجيل بسعر الخصم: 25-7 · يبدأ المعسكر 20-8",
     ctaText:"مرحبا، اريد التسجيل بمعسكر الامن السيبراني",
+    recommend:"🎯 <span><b>يُنصح به الآن</b> للمبتدئين وطلاب الأمن السيبراني.</span>",
     audience:["من عنده أساس بسيط ويريد تطبيق عملي مكثّف","الطلبة الجادين","الموظفين الباحثين عن مسار مهني واضح"],
     skills:["Networking","Linux","Penetration Testing","Web Vulnerabilities","Social Engineering","OpSec"],
     certificate:"شهادة تخرج من TechTalent Academy، بالإضافة لشهادة تفوّق من أكسفورد للمتفوقين الأوائل حسب نظام تقييم المعسكر.",
@@ -860,6 +981,13 @@ const LEVELS = {
       {q:"هل بكون جاهز لسوق العمل بعد المعسكر؟", a:"المعسكر يعطيك تدريب عملي مباشر تقدر تبني عليه للتقديم على وظائف الأمن السيبراني — الجاهزية الكاملة تعتمد أيضًا على مجهودك الشخصي بالتطبيق والمتابعة بعد التخرج."},
       {q:"هل المعسكر مناسب للمبتدئين؟", a:"نعم، سواء كنت مبتدئ تمامًا أو عندك خبرة بسيطة، المعسكر ياخذك خطوة بخطوة من الأساسيات إلى مستوى تطبيقي جاهز."},
       {q:"شنو تشمل رسوم المعسكر؟", a:"الرسوم تشمل التدريب الكامل (مباشر أو مسجّل)، شهادة التخرج، الدعم والمتابعة لمدة 6 أشهر، والوصول لبيئات التطبيق العملي."}
+    ],
+    testimonials:[
+      {name:"علي (ابو عرب) الساعدي", txt:"اني جان طموحي وحلمي التكنلوجيا والامن السيبراني والحمدالله بعد ما تعرفت على ست زينب وشفتهة مصدر للثقة وشتركت عدهة... اراجع المحاظرات المسجلة لين الشرح يخبل والحلو بيه كلة تطبيق عملي ومقاصر، وشكرا جزيلا الكم وللست زينب 🤍"},
+      {name:"علي عبد الله", txt:"فعلاً الدورة كانت واحدة من أجمل التجارب التعليمية اللي خضتها. كل شي كان منظم ومعد بإتقان، من المحتوى الغني والمفيد إلى الأجواء التفاعلية اللي خلّت التعلم ممتع وسلس. أما ست \"زينب\"، فبكل أمانة كانت رائعة بكل معنى الكلمة!"},
+      {name:"وسام صباح", txt:"كانت من اجمل وافضل الدورات الي اخذتها ما قصرتي بكلشي واضافة جبيرة جانت من ناحية المعلومات... واكو فقرة كلش ما موجودة عند البقية هي المتابعة بعد ما خلصت الدورة هي متابعة ومستمرة ويانة وتضيفلنة معلومات، كل التوفيق ان شاءالله"},
+      {name:"مرتضى", txt:"تعلمت منها الكثير في مجال الأمن السيبراني. أتذكر موقفًا ترك في قلبي أثرًا كبيرًا... حين لم يحضر أحد الامتحان الذي أعدّته لنا رغم حرصها الكبير علينا، شعرت وقتها بمدى خيبة أملها، لأنها لم تكن تنتظر شيئًا لنفسها. الأستاذة زينب هي قدوه، محفزه، أخت كبرى."},
+      {name:"tareq asafi", txt:"دورتك كتير كانت مفيدة... وبنصح كل حدا بنفسو هل مجال يسجل عندك لانو بتعلمي من تحت الصفر حتى الاحتراف ودائما طلابك الهم دعم خاص ومزايا كتير."}
     ]
   },
   l4:{
@@ -868,6 +996,7 @@ const LEVELS = {
     price:"375$", oldPrice:"450$", meta:"60–70 ساعة مسجّلة · 6 كورسات متكاملة",
     deadline:"🎉 السعر بعد الخصم 375$ لأول 20 شخص فقط — بعدها يرجع السعر الأصلي 450$",
     ctaText:"مرحبا، اريد التسجيل بالدبلومة الاحترافية في الامن السيبراني",
+    recommend:"👔 <span><b>يُنصح به</b> للموظفين ولمستوى متوسط.</span>",
     audience:["المبتدئين","المستوى المتوسط","الراغبين ببناء أساس شامل قبل التخصص"],
     skills:["Linux Basics","Networking Basics","Web Attacks & Vulnerability Discovery","Programming (C++/HTML/JS/Python)","Social Engineering & Device Security","Dark Web Concepts (بحث وتحليل فقط)","CTF Labs"],
     certificate:"شهادة إتمام بعد اجتياز الاختبار النهائي، بالإضافة إلى شهادة من كلية أكسفورد معتمدة دوليًا. تشمل الدبلومة 60–70 ساعة تدريب، 6 كورسات متكاملة، مختبرات CTF، ومشاريع عملية.",
@@ -878,6 +1007,13 @@ const LEVELS = {
       {q:"شنو طرق الدفع المتوفرة؟", a:"زين كاش، ماستر كارد، عملات رقمية USDT، حوالة مكتبية، أو ويسترن يونيون."},
       {q:"شنو مدة صلاحية الخصم؟", a:"السعر بعد الخصم 375$ (بدل 450$) متوفر لأول 20 شخص فقط، وبعدها يرجع السعر الأصلي."},
       {q:"هل الشهادات العالمية مضمونة بعد الدبلومة؟", a:"لا، الدبلومة تحضّرك وتبني مهاراتك للتقدم لهذي الشهادات، لكن الحصول عليها يتطلب التقديم للامتحان الرسمي لكل شهادة بشكل منفصل."}
+    ],
+    testimonials:[
+      {name:"BAKR.", txt:"كانت بداية ممتازة بحيث انها فتحت كثير أبواب و توسع المدى الإدراكي عندي و بنسبه لي عطاء الأستاذة كان ممتاز و م قصرت من المصادر المفيدة وهادا شيء نادر بحكم كثير ناس تشارك تعبها او مصادرها يلي تعبت عشانهم."},
+      {name:"A.S ⭐", txt:"الكورس جدا رائع وعملي ومفيد جدا وما قصرتي معنا في معلومة او استفسار وان شاء الله يكون في كورسات لاحقة معك كل الاحترام لك ❤️❤️"},
+      {name:"Ali Hassaan 🇫🇷", txt:"أنا كنت مبتدئًا تمامًا في الأمن السيبراني، وما كنت أعرف من وين أبدأ ولا كيف أفهم الأساسيات، بس الحمد لله بدايتي كانت معك أفضل خيار. بفضل الله ثم فضلك، قدرت أبني قاعدة قوية وبدأت أنطلق بالمجال خطوة بخطوة."},
+      {name:"haSsan", txt:"اني دخلت يم ست زينب دورتين وحيل مستفاد منهن بكلشي بحيث حتى طلاب امن سيبراني مرحله اولى مرات ياخذون معلومات مني."},
+      {name:"Mohammed", txt:"اول تجربه لي كانت مع الدكتوره زينب... شرحها مفصل ومررا تسهل المعلومه وهي شجعتني اني اكمل وحبيت المجال اكثر، وكل جهودك دكتوره واتمنى بدل التجربه عشره ❤️❤️❤️❤️"}
     ]
   }
 };
@@ -887,8 +1023,8 @@ function ttOpen(id){
   document.getElementById('dCrumb').textContent = L.tag;
   document.getElementById('dTitle').textContent = L.title;
   document.getElementById('dDesc').textContent = L.desc;
-  document.getElementById('dEmployerNote').innerHTML = L.employerNote
-    ? `<div class="employer-note">👔 <span><b>مناسب للموظفين:</b> ${L.employerNote}</span></div>` : '';
+  document.getElementById('dEmployerNote').innerHTML = L.recommend
+    ? `<div class="employer-note">${L.recommend}</div>` : '';
   document.getElementById('dAudience').innerHTML = (L.audience || []).map(a=>`<span class="skill-badge">${a}</span>`).join('');
   document.getElementById('dSkills').innerHTML = L.skills.map(s=>`<span class="skill-badge">${s}</span>`).join('');
   document.getElementById('dCert').textContent = L.certificate || '';
@@ -901,6 +1037,15 @@ function ttOpen(id){
 
   document.getElementById('dLabNote').innerHTML = L.lab
     ? `<div class="lab-note">🛡️ <span><b>ملاحظة مهمة:</b> ${L.lab}</span></div>` : '';
+
+  document.getElementById('dTestimonials').innerHTML = (L.testimonials && L.testimonials.length)
+    ? L.testimonials.map(t=>`
+        <div class="wall-card" style="margin-bottom:14px;">
+          <span class="quote-mark">"</span>
+          <div class="wall-txt">${t.txt}</div>
+          <div class="wall-name">${t.name}</div>
+        </div>`).join('')
+    : `<div class="testimonial-placeholder"><div class="icn">💬</div><p>آراء المتدربين لهذا المسار قريبًا.</p></div>`;
   document.getElementById('dFaq').innerHTML = L.faq.map((f,i)=>`
     <div class="accordion-item" id="acc-${id}-${i}">
       <div class="accordion-q" onclick="ttAcc('${id}-${i}')">
@@ -935,7 +1080,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') ttClose(); });
 const tabLinks = document.querySelectorAll('.tab-link');
 const tabSections = ['about','courses','corporate'].map(id=>document.getElementById(id));
 function updateActiveTab(){
-  let current = tabSections[0].id;
+  let current = 'courses';
   const scrollPos = window.scrollY + 90;
   tabSections.forEach(sec=>{ if(sec.offsetTop <= scrollPos) current = sec.id; });
   tabLinks.forEach(link=>{
