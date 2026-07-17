@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechTalent Academy — من نحن والدورات المتاحة</title>
+<meta name="description" content="TechTalent Academy: تعرف علينا وعلى المؤسسة، شوف مسارات التدريب بالأمن السيبراني، وبرامج التدريب المؤسسي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#6B0F1A;
+    --coral:#D71920;
+    --coral-dim:#B31119;
+    --cyan:#00C2FF;
+    --ink:#221620;
+    --ink-2:#2b1c29;
+    --glow: rgba(140,29,41,0.6);
+    --cream:#eef1fa;
+    --cream-dim:#a7aec2;
+    --cream-faint:#c3c9db;
+    --line: rgba(255,255,255,0.1);
+    --card-bg: rgba(255,255,255,0.04);
+    --display: 'IBM Plex Sans Arabic', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:var(--display);
+    font-weight:400;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:var(--display); font-weight:700; letter-spacing:-0.01em;}
+  .mono{font-family:var(--mono);direction:ltr;unicode-bidi:isolate;}
+
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse 800px 500px at 15% -10%, var(--glow), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 110% 20%, rgba(215,25,32,0.18), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+  .wrap-narrow{max-width:920px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+
+  /* ---------- NAV / TABS ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(34,22,32,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; gap:16px; flex-wrap:wrap;}
+  .brand-mark{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-weight:600; font-size:15px; letter-spacing:0.5px; flex-shrink:0;}
+  .brand-logo{height:100px; width:auto; display:block;}
+  .brand-mark .dot{width:8px; height:8px; border-radius:50%; background:var(--cyan); box-shadow:0 0 10px var(--cyan);}
+
+  .tabs{display:flex; gap:6px; background:rgba(255,255,255,0.03); padding:4px; border-radius:10px;}
+  .tab-link{
+    font-family:var(--mono); font-size:13px; color:var(--cream-dim); text-decoration:none;
+    padding:8px 16px; border-radius:7px; transition:background .2s ease, color .2s ease;
+  }
+  .tab-link:hover{color:var(--cream);}
+  .tab-link.is-active{background:var(--coral); color:var(--cream); font-weight:600;}
+
+  .nav-cta{
+    background:var(--coral); color:var(--cream); font-weight:600; font-size:13.5px;
+    padding:9px 18px; border-radius:6px; text-decoration:none; white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(215,25,32,0.4);}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--coral); color:var(--cream); font-weight:600; font-size:14.5px;
+    padding:12px 26px; border-radius:8px; text-decoration:none; white-space:nowrap; border:none; cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(215,25,32,0.4);}
+  .btn.ghost{background:transparent; border:1px solid var(--cream-dim); color:var(--cream);}
+  .btn.details{background:transparent; border:1px solid var(--line); color:var(--cyan); font-size:13.5px; padding:10px 18px;}
+  .btn.details:hover{border-color:var(--cyan); box-shadow:none;}
+
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; color:var(--coral);
+    letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--coral);}
+
+  section.page-section{padding:64px 0; border-top:1px solid var(--line); scroll-margin-top:70px;}
+  section.page-section:first-of-type{border-top:none;}
+  .section-head{margin-bottom:40px; max-width:640px;}
+  .section-head h2{font-size:clamp(24px,3.5vw,32px); font-weight:700;}
+  .section-head p{color:var(--cream-dim); margin-top:12px; font-size:15.5px; font-weight:300;}
+
+  /* =====================================================
+     ABOUT TAB — TechTalent intro + founder profile
+     ===================================================== */
+  .about-intro{max-width:680px; margin-bottom:56px;}
+  .about-intro p{color:var(--cream-dim); font-size:15.5px; font-weight:300;}
+
+  .hero-grid{display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap; margin-bottom:16px;}
+  .badge-card{
+    flex:0 0 240px; height:340px; background:var(--ink-2); border:5px solid var(--maroon); border-radius:34px;
+    padding:0; position:relative; overflow:hidden; text-align:center;
+  }
+  .badge-notch{
+    position:absolute; top:-2px; left:50%; transform:translateX(-50%); z-index:3;
+    width:86px; height:22px; background:var(--ink-2); border:5px solid var(--maroon); border-top:none;
+    border-radius:0 0 16px 16px;
+  }
+  .badge-photo{position:absolute; inset:0; width:100%; height:100%; margin:0;}
+  .badge-photo img{width:100%; height:100%; display:block; object-fit:cover; object-position:top center;}
+  .badge-footer{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    background:var(--maroon); margin:0; padding:14px 18px 16px; border-radius:0;
+    color:var(--cream); font-family:var(--mono); font-size:11.5px;
+  }
+
+  .hero-info{flex:1; min-width:280px; padding-top:6px;}
+  .hero-info h1{font-size:clamp(26px,4vw,36px); margin-bottom:6px;}
+  .role{font-size:15px; color:var(--coral); font-weight:500; margin-bottom:20px;}
+
+  .contact-row{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+  .contact-chip{
+    font-family:var(--mono); font-size:12.5px; color:var(--cream-dim);
+    background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:20px; padding:7px 14px;
+  }
+  .summary{color:var(--cream-dim); font-size:15px; font-weight:300; max-width:560px; margin-bottom:22px;}
+
+  .stat-row{display:flex; flex-wrap:wrap; gap:26px;}
+  .stat{text-align:center;}
+  .stat .n{font-family:var(--mono); font-weight:600; font-size:20px; color:var(--coral);}
+  .stat .l{font-size:11.5px; color:var(--cream-dim); margin-top:2px;}
+
+  .subblock{margin-top:52px;}
+  .subblock-h{font-size:19px; font-weight:700; margin-bottom:6px;}
+  .subblock-lead{color:var(--cream-dim); font-size:13.5px; font-weight:300; margin-bottom:24px;}
+
+  .timeline{position:relative; padding-inline-start:26px; border-inline-start:2px solid var(--line);}
+  .t-item{position:relative; margin-bottom:26px;}
+  .t-item::before{
+    content:''; position:absolute; inset-inline-start:-32px; top:4px;
+    width:11px; height:11px; border-radius:50%; background:var(--coral); border:2px solid var(--ink);
+  }
+  .t-role{font-weight:600; font-size:15px;}
+  .t-org{color:var(--coral); font-size:13px; font-weight:500;}
+  .t-date{font-family:var(--mono); font-size:11.5px; color:var(--cream-dim); margin-bottom:8px;}
+  .t-item ul{margin-inline-start:18px; font-size:13.5px; color:var(--cream-dim); font-weight:300;}
+  .t-item li{margin-bottom:4px;}
+
+  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  @media(max-width:640px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{background:var(--card-bg); border:1px solid var(--line); border-radius:12px; padding:18px;}
+  .proj-tag{font-family:var(--mono); font-size:10px; color:var(--coral); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block;}
+  .proj-title{font-weight:600; font-size:14.5px; margin-bottom:6px;}
+  .proj-desc{font-size:12.5px; color:var(--cream-dim); font-weight:300;}
+
+  .skills-cols{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media(max-width:640px){.skills-cols{grid-template-columns:1fr;}}
+  .skill-h{font-family:var(--mono); font-size:11.5px; color:var(--coral); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;}
+  .pill-group{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--cream); font-size:12px; padding:6px 13px; border-radius:16px; font-family:var(--mono);}
+  .soft-list{font-size:13px; color:var(--cream-dim); font-weight:300;}
+  .soft-list li{margin-bottom:6px; margin-inline-start:18px;}
+
+  .cert-grid{display:flex; flex-direction:column; gap:12px;}
+  .cert-item{display:flex; justify-content:space-between; align-items:center; background:var(--card-bg); border:1px solid var(--line); border-radius:10px; padding:15px 20px; flex-wrap:wrap; gap:8px;}
+  .cert-name{font-weight:600; font-size:14px;}
+  .cert-org{font-size:12px; color:var(--cream-dim);}
+  .cert-year{font-family:var(--mono); font-size:12px; color:var(--coral);}
+
+  /* =====================================================
+     COURSES TAB
+     ===================================================== */
+  .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:24px 0; margin-bottom:48px;}
+  .trust .wrap{display:flex; flex-wrap:wrap; gap:36px; justify-content:space-between;}
+  .trust-item{flex:1; min-width:150px; text-align:center;}
+  .trust-item .n{font-family:var(--mono); font-weight:600; font-size:22px; color:var(--coral);}
+  .trust-item .l{font-size:12.5px; color:var(--cream-dim); margin-top:4px;}
+
+  .level-card{
+    border:1px solid var(--line); border-radius:14px; margin-bottom:22px; overflow:hidden;
+    background:var(--card-bg); transition:border-color .25s ease, transform .2s ease; cursor:pointer;
+  }
+  .level-card:hover{border-color:rgba(215,25,32,0.5); transform:translateY(-2px);}
+  .level-head{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 26px; flex-wrap:wrap;}
+  .level-tag{
+    font-family:var(--mono); font-size:11px; color:var(--ink); background:var(--coral); padding:4px 10px;
+    border-radius:4px; letter-spacing:1px; text-transform:uppercase; display:inline-block; margin-bottom:10px;
+  }
+  .level-tag.alt{background:var(--cream);}
+  .level-title{font-size:20px; font-weight:600;}
+  .level-sub{color:var(--cream-dim); font-size:13.5px; margin-top:6px; font-weight:300;}
+  .level-price{text-align:left; direction:ltr;}
+  .level-price .old{font-family:var(--mono); font-size:14px; color:var(--cream-dim); text-decoration:line-through; margin-inline-end:8px;}
+  .level-price .now{font-family:var(--mono); font-size:26px; font-weight:600; color:var(--coral);}
+  .level-price .note{font-size:11px; color:var(--cream-dim); margin-top:2px; direction:rtl;}
+  .level-body{padding:0 26px 22px;}
+  .topics-preview{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;}
+  .topics-preview span{font-size:12.5px; color:var(--cream-dim); background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:6px; padding:6px 12px;}
+  .level-footer{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+  .who{font-size:13px; color:var(--cream-dim); font-weight:300;}
+
+  .final-cta{padding:56px 0 20px; text-align:center;}
+  .final-cta h2{font-size:clamp(22px,4vw,28px); font-weight:700; margin-bottom:14px;}
+  .final-cta p{color:var(--cream-dim); max-width:480px; margin:0 auto 26px; font-weight:300;}
+
+  /* =====================================================
+     CORPORATE TAB
+     ===================================================== */
+  .corp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:36px;}
+  @media(max-width:760px){.corp-grid{grid-template-columns:1fr;}}
+  .corp-card{background:var(--card-bg); border:1px solid var(--line); border-radius:14px; padding:24px;}
+  .corp-icon{font-size:26px; margin-bottom:14px;}
+  .corp-title{font-size:16.5px; font-weight:600; margin-bottom:8px;}
+  .corp-desc{font-size:13.5px; color:var(--cream-dim); font-weight:300;}
+
+  .corp-includes{background:var(--card-bg); border:1px solid var(--line); border-radius:14px; padding:26px 28px; margin-bottom:36px;}
+  .corp-includes h3{font-size:15px; margin-bottom:16px; font-family:var(--mono); color:var(--coral); text-transform:uppercase; letter-spacing:1px;}
+  .corp-includes ul{display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; list-style:none;}
+  @media(max-width:640px){.corp-includes ul{grid-template-columns:1fr;}}
+  .corp-includes li{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--cream);}
+  .corp-includes li::before{content:'▸'; color:var(--coral); font-size:13px; margin-top:3px;}
+
+  .corp-cta{
+    background:linear-gradient(135deg, rgba(107,15,26,0.35), var(--card-bg));
+    border:1px solid rgba(215,25,32,0.3); border-radius:14px; padding:32px; text-align:center;
+  }
+  .corp-cta h3{font-size:19px; margin-bottom:10px;}
+  .corp-cta p{color:var(--cream-dim); font-size:14px; font-weight:300; margin-bottom:20px; max-width:460px; margin-inline:auto;}
+
+  /* =====================================================
+     MODAL / DETAIL VIEW (courses)
+     ===================================================== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(10,5,9,0.8); backdrop-filter:blur(4px);
+    z-index:100; display:none; align-items:flex-start; justify-content:center;
+    padding:36px 20px; overflow-y:auto;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:16px;
+    max-width:860px; width:100%; margin-top:10px; position:relative;
+    box-shadow:0 40px 100px rgba(0,0,0,0.6);
+  }
+  .modal-close{
+    position:absolute; top:18px; inset-inline-end:18px; z-index:5;
+    background:rgba(255,255,255,0.06); border:none; color:var(--cream); width:34px; height:34px;
+    border-radius:50%; font-size:16px; cursor:pointer;
+  }
+  .modal-close:hover{background:rgba(255,255,255,0.12);}
+  .modal-body{padding:44px 36px 36px;}
+  .detail-layout{display:flex; gap:36px; align-items:flex-start;}
+  .detail-content{flex:1; min-width:0;}
+  .detail-sidebar{flex:0 0 250px;}
+  .crumb{font-family:var(--mono); font-size:12px; color:var(--coral); letter-spacing:1px;}
+  .detail-title{font-size:26px; font-weight:700; margin:12px 0 14px;}
+  .detail-desc{color:var(--cream-dim); font-size:15px; font-weight:300; max-width:520px;}
+  .detail-h{font-size:14px; font-weight:600; margin:30px 0 14px; color:var(--cream); font-family:var(--mono); letter-spacing:0.5px;}
+  .skill-badges{display:flex; flex-wrap:wrap; gap:10px;}
+  .skill-badge{background:rgba(255,255,255,0.03); border:1px solid rgba(215,25,32,0.45); color:var(--cream); font-size:13px; padding:8px 16px; border-radius:20px; font-family:var(--mono);}
+  .lab-note{display:flex; gap:10px; align-items:flex-start; background:rgba(215,25,32,0.08); border:1px solid rgba(215,25,32,0.25); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--cream-dim); margin-top:20px; font-weight:300;}
+  .lab-note b{color:var(--cream); font-weight:600;}
+  .employer-note{display:flex; gap:10px; align-items:flex-start; background:rgba(0,194,255,0.07); border:1px solid rgba(0,194,255,0.3); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--cream-dim); margin:18px 0; font-weight:300;}
+  .employer-note b{color:var(--cyan); font-weight:600;}
+  .accordion-item{border:1px solid var(--line); border-radius:10px; margin-bottom:10px; overflow:hidden; background:rgba(255,255,255,0.02);}
+  .accordion-q{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 20px; cursor:pointer; font-size:14.5px; font-weight:600; user-select:none;}
+  .accordion-q .arrow{color:var(--coral); font-size:13px; transition:transform .2s ease; flex-shrink:0;}
+  .accordion-item.open .arrow{transform:rotate(-90deg);}
+  .accordion-a{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+  .accordion-a p{padding:0 20px 16px; color:var(--cream-dim); font-size:14px; font-weight:300;}
+  .accordion-item.open .accordion-a{max-height:260px;}
+  .testimonial-placeholder{text-align:center; padding:32px 20px; border:1px dashed var(--line); border-radius:12px; color:var(--cream-dim);}
+  .testimonial-placeholder .icn{font-size:24px; margin-bottom:8px;}
+  .testimonial-placeholder p{font-size:13.5px; font-weight:300;}
+  .price-card{position:sticky; top:20px; background:var(--card-bg); border:1px solid var(--line); border-radius:14px; padding:24px; text-align:right;}
+  .price-card .price{font-family:var(--mono); font-size:26px; font-weight:600; color:var(--coral); margin-bottom:2px;}
+  .price-card .old-price{font-family:var(--mono); font-size:14px; color:var(--cream-dim); text-decoration:line-through; margin-inline-end:8px;}
+  .price-card .meta-line{font-size:12.5px; color:var(--cream-dim); margin-bottom:18px; font-weight:300;}
+  .price-card .btn{width:100%; margin-top:4px;}
+  .price-card .deadline{font-size:11.5px; color:#ffbd2e; margin-top:10px; font-family:var(--mono);}
+
+  /* ---------- FOOTER / FLOAT ---------- */
+  footer{border-top:1px solid var(--line); padding:32px 0; text-align:center; font-size:13px; color:var(--cream-dim);}
+  footer .mono{font-size:12px; opacity:.7;}
+  .float-wa{
+    position:fixed; bottom:22px; left:22px; z-index:60;
+    background:var(--coral); color:var(--cream); width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+    box-shadow:0 10px 30px rgba(215,25,32,0.5); font-size:26px;
+  }
+
+  @media(max-width:640px){
+    .level-head{flex-direction:column; align-items:flex-start;}
+    .level-price{text-align:right; direction:rtl;}
+    .modal-body{padding:56px 20px 28px;}
+    .detail-layout{flex-direction:column;}
+    .detail-sidebar{flex:1; width:100%; order:-1; margin-bottom:24px;}
+    .price-card{position:static;}
+    .tabs{width:100%; justify-content:space-between;}
+    .tab-link{padding:8px 10px; font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand-mark">
+      <img src="logo.png" alt="TechTalent Academy" class="brand-logo">
+    </div>
+    <div class="tabs">
+      <a class="tab-link is-active" href="#courses">الدورات المتاحة</a>
+      <a class="tab-link" href="#about">من نحن</a>
+      <a class="tab-link" href="#corporate">تدريب المؤسسات</a>
+    </div>
+    <a class="nav-cta" href="https://wa.me/9647764271151" target="_blank" rel="noopener">تواصل واتساب</a>
+  </div>
+</nav>
+
+<!-- =====================================================
+     TAB 2 — COURSES
+     ===================================================== -->
+<section class="page-section" id="courses">
+  <div class="wrap">
+    <div class="eyebrow">Choose Your Path</div>
+    <div class="section-head">
+      <h2>الدورات المتاحة</h2>
+      <p>أربعة مسارات مبنية على تجربة تدريب أكثر من 200 متدرب — اضغط على أي مسار لتشوف تفاصيله الكاملة.</p>
+    </div>
+
+    <div class="trust">
+      <div class="wrap" style="padding:0;">
+        <div class="trust-item"><div class="n">200+</div><div class="l">متدرب تم تخريجهم</div></div>
+        <div class="trust-item"><div class="n">149K+</div><div class="l">متابع @zano_security</div></div>
+        <div class="trust-item"><div class="n">Apple · DoD</div><div class="l">شكر رسمي على أبحاث أمنية</div></div>
+      </div>
+    </div>
+
+    <!-- LEVEL 1 CARD -->
+    <article class="level-card" onclick="ttOpen('l1')">
+      <div class="level-head">
+        <div>
+          <span class="level-tag">المستوى 1</span>
+          <div class="level-title">أساسيات الأمن السيبراني واكتشاف الثغرات</div>
+          <div class="level-sub">نقطة الانطلاق الصحيحة لأي شخص ما بدأ لحد الآن</div>
+        </div>
+        <div class="level-price">
+          <div class="now mono">$49</div>
+          <div class="note">دفعة واحدة</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="topics-preview">
+          <span>أساسيات الشبكات</span><span>Kali Linux</span><span>مراحل اختبار الاختراق</span><span>كتابة التقرير الأول</span>
+        </div>
+        <div class="level-footer">
+          <div class="who">📹 تدريب مسجّل · وصول دائم</div>
+          <button class="btn details" onclick="event.stopPropagation(); ttOpen('l1')">التفاصيل الكاملة ↗</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- LEVEL 2 CARD -->
+    <article class="level-card" onclick="ttOpen('l2')">
+      <div class="level-head">
+        <div>
+          <span class="level-tag">المستوى 2</span>
+          <div class="level-title">اختبار الاختراق العملي — مسار Bug Bounty</div>
+          <div class="level-sub">أول خطوة حقيقية نحو العمل الحر كفاحص ثغرات معتمد</div>
+        </div>
+        <div class="level-price">
+          <div class="now mono">$99</div>
+          <div class="note">53 فيديو + متابعة 6 أشهر</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="topics-preview">
+          <span>OWASP Top 10</span><span>Burp Suite</span><span>SQLi / XSS / CSRF</span><span>تقرير Bug Bounty</span>
+        </div>
+        <div class="level-footer">
+          <div class="who">📹 53 فيديو · 🤝 متابعة 6 أشهر</div>
+          <button class="btn details" onclick="event.stopPropagation(); ttOpen('l2')">التفاصيل الكاملة ↗</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- LEVEL 3 CARD -->
+    <article class="level-card" onclick="ttOpen('l3')">
+      <div class="level-head">
+        <div>
+          <span class="level-tag">المستوى 3</span>
+          <div class="level-title">معسكر الأمن السيبراني التدريبي</div>
+          <div class="level-sub">تطبيق عملي مباشر بإشراف مدرّب — شهرين مكثّفين</div>
+        </div>
+        <div class="level-price">
+          <div class="old mono">$210</div>
+          <div class="now mono">$190</div>
+          <div class="note">خصم مبكر حتى 25-7</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="topics-preview">
+          <span>🔴 مباشر عبر Google Meet</span><span>📹 نسخة مسجّلة بـ 149$</span><span>شهادة أكسفورد للمتفوقين</span>
+        </div>
+        <div class="level-footer">
+          <div class="who">🗓 يبدأ 20-8 · 👥 10–15 مقعد فقط</div>
+          <button class="btn details" onclick="event.stopPropagation(); ttOpen('l3')">التفاصيل الكاملة ↗</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- LEVEL 4 CARD -->
+    <article class="level-card" onclick="ttOpen('l4')">
+      <div class="level-head">
+        <div>
+          <span class="level-tag alt" style="color:var(--maroon)">المستوى 4 — Advanced</span>
+          <div class="level-title">Advanced Red Team Diploma</div>
+          <div class="level-sub">المسار الاحترافي الكامل نحو Red Team</div>
+        </div>
+        <div class="level-price">
+          <div class="now mono" style="font-size:18px; color:var(--cream);">قريبًا</div>
+          <div class="note">تواصل للاستفسار</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="topics-preview">
+          <span>برمجة (Python/C++/PHP)</span><span>Kali Professional</span><span>Web Security متقدم</span><span>Red Team Ops</span>
+        </div>
+        <div class="level-footer">
+          <div class="who">📹 50–60 ساعة · 🤝 دعم سنة كاملة</div>
+          <button class="btn details" onclick="event.stopPropagation(); ttOpen('l4')">التفاصيل الكاملة ↗</button>
+        </div>
+      </div>
+    </article>
+
+    <div class="final-cta">
+      <h2>ما تعرف من وين تبدأ؟</h2>
+      <p>راسلنا على واتساب واحنا نساعدك تحدد المسار المناسب لمستواك وهدفك المهني.</p>
+      <a class="btn" href="https://wa.me/9647764271151" target="_blank" rel="noopener">تواصل معنا الآن</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     TAB 1 — ABOUT (TechTalent + Founder)
+     ===================================================== -->
+<section class="page-section" id="about">
+  <div class="wrap-narrow">
+
+    <div class="eyebrow">Who We Are</div>
+    <h2 style="font-size:clamp(26px,4vw,36px); margin-bottom:20px;">من نحن — TechTalent Academy</h2>
+    <div class="about-intro">
+      <p>TechTalent Academy مبادرة تدريبية متخصصة بالأمن السيبراني، هدفها تخريج كوادر عربية مؤهلة باختبار الاختراق والدفاع السيبراني عبر تدريب عملي 100% ومحتوى عربي دقيق — من الأساسيات إلى التخصص الاحترافي بـ Red Team.</p>
+    </div>
+
+    <div class="subblock" style="margin-top:0;">
+      <div class="subblock-h">المؤسِّسة</div>
+      <p class="subblock-lead">التعريف بمن تقف خلف TechTalent Academy.</p>
+
+      <div class="hero-grid">
+        <div class="badge-card">
+          <div class="badge-notch"></div>
+          <div class="badge-photo"><img src="zainab-profile.png" alt="زينب علي هادي"></div>
+          <div class="badge-footer mono">TechTalent Academy</div>
+        </div>
+
+        <div class="hero-info">
+          <h1>زينب علي هادي</h1>
+          <div class="role">مؤسِّسة ومديرة TechTalent Academy</div>
+
+          <div class="contact-row">
+            <span class="contact-chip">📍 كربلاء، العراق</span>
+            <span class="contact-chip mono">+964 776 427 1151</span>
+            <span class="contact-chip mono">zainab.ali.hadi1999@gmail.com</span>
+          </div>
+
+          <p class="summary">مدربة أمن سيبراني ومختبرة اختراق ويب بخبرة تتجاوز 4 سنوات في الاختراق الأخلاقي، الاستشارات الأمنية، وأبحاث الثغرات. اشتغلت مع جهات محلية وعالمية، اكتشفت ثغرات حرجة بمؤسسات كبرى، وحاصلة على شهادات معتمدة بالمجال.</p>
+
+          <div class="stat-row">
+            <div class="stat"><div class="n">4+</div><div class="l">سنوات خبرة</div></div>
+            <div class="stat"><div class="n">200+</div><div class="l">متدرب</div></div>
+            <div class="stat"><div class="n">Apple·DoD</div><div class="l">شكر رسمي</div></div>
+            <div class="stat"><div class="n">eWPTX v2</div><div class="l">معتمدة</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subblock">
+      <div class="subblock-h">الخبرة العملية</div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-role">مدربة أمن سيبراني — Government Agency, Dubai</div>
+          <div class="t-org">تدريب حكومي</div>
+          <div class="t-date">يناير 2025 – فبراير 2025</div>
+          <ul>
+            <li>دربت 12 محترف أمن سيبراني ضمن دورتين منفصلتين.</li>
+            <li>حصلت على تقدير رسمي لتعزيز الوعي الأمني وآليات الدفاع لدى المتدربين.</li>
+          </ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-role">مستشارة أمن سيبراني مستقلة (Freelance)</div>
+          <div class="t-org">عن بُعد</div>
+          <div class="t-date">مايو 2019 – حتى الآن</div>
+          <ul>
+            <li>قدّمت خدمات استشارية أمنية لمؤسسات وأفراد، بتركيز على أمن الشبكات، أمن تطبيقات الويب، وتقييم الثغرات.</li>
+            <li>اكتشفت ثغرات حرجة، منها ثغرتان أمنيتان بوزارة الدفاع الأمريكية وثغرة عالية الخطورة بالبنية التحتية لإستونيا (2023).</li>
+            <li>حصلت على تقدير رسمي من Apple (2024) لاكتشاف ثغرة أمنية مهمة.</li>
+          </ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-role">تدريب Web Full Stack</div>
+          <div class="t-org">Cloud Technology, بغداد — مزوّد خدمات IT وأمن سيبراني رائد بالعراق</div>
+          <div class="t-date">مايو 2020 – 2021</div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-role">تدريب Web Programmer</div>
+          <div class="t-org">Turtunu (تورتونو) — شركة هولندية</div>
+          <div class="t-date">2020</div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-role">مؤسِّسة ومديرة TechTalent</div>
+          <div class="t-org">TechTalent</div>
+          <div class="t-date">يوليو 2023 – حتى الآن</div>
+          <ul><li>تأسيس وقيادة TechTalent كمبادرة تدريبية واستشارية متخصصة بالاختراق الأخلاقي واختبار الاختراق.</li></ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-role">مدربة أمن سيبراني ومختبرة اختراق ويب — TechTalent</div>
+          <div class="t-org">Techtalent</div>
+          <div class="t-date">أغسطس 2023 – حتى الآن</div>
+          <ul>
+            <li>نفّذت مشاريع اختبار اختراق متقدمة لعدة عملاء، وحدّدت وعالجت ثغرات أمنية.</li>
+            <li>قدّمت دورات تدريبية شاملة في الاختراق الأخلاقي، Bug Bounty، والتحقيق الرقمي (Digital Forensics) لمحترفين وطلاب.</li>
+            <li>قادت مشاريع أمن سيبراني لعدة عملاء عزّزت وضعهم الأمني ووعيهم.</li>
+          </ul>
+        </div>
+
+        <div class="t-item">
+          <div class="t-role">مختبِرة اختراق (تدريب/Internship)</div>
+          <div class="t-org">Penetration Tester</div>
+          <div class="t-date">—</div>
+          <ul>
+            <li>نفّذت تقييمات أمنية لتطبيقات مؤسسية وحدّدت نواقل هجوم محتملة.</li>
+            <li>ساعدت بالتوعية الأمنية وتطوير سياسات الأمان لشركات محلية.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="subblock">
+      <div class="subblock-h">مشاريع وإنجازات بارزة</div>
+      <p class="subblock-lead">اكتشافات وتقارير أمنية مصرّح بها ضمن مسار الاختراق الأخلاقي.</p>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <span class="proj-tag">Authorized Assessment</span>
+          <div class="proj-title">EarthLink Iraq — تقييم أمني</div>
+          <div class="proj-desc">تقييم أمني مصرّح به لمزود الإنترنت EarthLink، شمل تجاوز لوحة تسجيل الدخول لأحد سيرفراتهم والوصول الكامل للوحة التحكم (Dashboard) — مع تقرير احترافي بمعايير OWASP/PTES.</div>
+        </div>
+        <div class="proj-card">
+          <span class="proj-tag">Vulnerability Disclosure</span>
+          <div class="proj-title">البنية التحتية لإستونيا</div>
+          <div class="proj-desc">الإبلاغ عن ثغرة عالية الخطورة في نظام النقل الإستوني، مصنّفة High Risk (2023).</div>
+        </div>
+        <div class="proj-card">
+          <span class="proj-tag">Bug Bounty</span>
+          <div class="proj-title">Apple Security Research</div>
+          <div class="proj-desc">تقدير رسمي من Apple (2024) لاكتشاف ثغرة أمنية مهمة ضمن نطاقاتها.</div>
+        </div>
+        <div class="proj-card">
+          <span class="proj-tag">Client Report</span>
+          <div class="proj-title">INZO Trading Company</div>
+          <div class="proj-desc">إعداد تقرير اختبار اختراق كامل لصالح شركة INZO التجارية (2021).</div>
+        </div>
+        <div class="proj-card">
+          <span class="proj-tag">IoT / Robotics</span>
+          <div class="proj-title">روبوت مساعد طبي</div>
+          <div class="proj-desc">تطوير روبوت مساعد طبي باستخدام Arduino وIoT لمراقبة المرضى (2020).</div>
+        </div>
+        <div class="proj-card">
+          <span class="proj-tag">Community</span>
+          <div class="proj-title">أول حدث لـ HackTheBox داخل العراق</div>
+          <div class="proj-desc">أول حدث لـ HackTheBox يُقام داخل العراق (2023)، كان من تنظيمها وقيادتها، وجمع محترفين وهواة لتحديات اختبار اختراق عملية.</div>
+        </div>
+        <div class="proj-card">
+          <span class="proj-tag">Workshop</span>
+          <div class="proj-title">ورشة اكتشاف الثغرات</div>
+          <div class="proj-desc">تقديم ورشة بالأكاديمية العربية الدولية حول تقييم الثغرات وأساليب الاستغلال، لتطوير مهارات Bug Bounty للحضور (2023).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subblock">
+      <div class="subblock-h">المهارات</div>
+      <div class="skills-cols">
+        <div>
+          <div class="skill-h">Technical Skills</div>
+          <div class="pill-group">
+            <span class="pill">Penetration Testing</span>
+            <span class="pill">Metasploit</span>
+            <span class="pill">Burp Suite</span>
+            <span class="pill">SQLmap</span>
+            <span class="pill">Network Security</span>
+            <span class="pill">Firewalls / VPN / IDS-IPS</span>
+            <span class="pill">OWASP Top 10</span>
+            <span class="pill">XSS / CSRF / SQLi</span>
+            <span class="pill">Kali Linux</span>
+            <span class="pill">Windows Server</span>
+            <span class="pill">Digital Forensics</span>
+            <span class="pill">Malware Analysis</span>
+            <span class="pill">Bash / Python / PowerShell</span>
+            <span class="pill">SSL/TLS · AES · RSA</span>
+            <span class="pill">Nessus / OpenVAS / Shodan</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-h">Soft Skills</div>
+          <ul class="soft-list">
+            <li>عمل جماعي وأداء عالي تحت الضغط.</li>
+            <li>مهارات تواصل قوية لتنسيق الفرق والتعامل مع العملاء.</li>
+            <li>تحليل ومعالجة مشاكل مع تركيز على السلامة الرقمية وثقة العميل.</li>
+            <li>قيادة فرق وإدارة مشاريع أمنية.</li>
+            <li>تنظيم عالي وإدارة وقت فعالة لتسليم حلول أمنية بالوقت المحدد.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="subblock">
+      <div class="subblock-h">الشهادات والتعليم</div>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div><div class="cert-name">eWPTX v2</div><div class="cert-org">eLearnSecurity</div></div>
+          <div class="cert-year mono">2024</div>
+        </div>
+        <div class="cert-item">
+          <div><div class="cert-name">Training of Trainers (TOT)</div><div class="cert-org">American Board</div></div>
+          <div class="cert-year mono">2023</div>
+        </div>
+        <div class="cert-item">
+          <div><div class="cert-name">بكالوريوس علوم حاسوب</div><div class="cert-org">جامعة بابل، العراق — تقدير: جيد</div></div>
+          <div class="cert-year mono">2017–2021</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================
+     TAB 3 — CORPORATE / INSTITUTIONAL TRAINING
+     ===================================================== -->
+<section class="page-section" id="corporate">
+  <div class="wrap">
+    <div class="eyebrow">For Organizations</div>
+    <div class="section-head">
+      <h2>دورات تدريبية للمؤسسات والشركات</h2>
+      <p>برامج أمن سيبراني مخصصة لتأهيل الموظفين، متاحة للقطاع الحكومي، البنوك والمؤسسات المالية، وكل أنواع الشركات.</p>
+    </div>
+
+    <div class="corp-grid">
+      <div class="corp-card">
+        <div class="corp-icon">🏛️</div>
+        <div class="corp-title">القطاع الحكومي</div>
+        <div class="corp-desc">برامج توعية وتأهيل أمني لموظفي الدوائر والمؤسسات الحكومية، بما يتناسب مع طبيعة عمل كل جهة.</div>
+      </div>
+      <div class="corp-card">
+        <div class="corp-icon">🏦</div>
+        <div class="corp-title">البنوك والمؤسسات المالية</div>
+        <div class="corp-desc">تدريب متخصص بأمن المعاملات المالية، الوعي الأمني لموظفي البنوك، وتقليل مخاطر الاحتيال والاختراق.</div>
+      </div>
+      <div class="corp-card">
+        <div class="corp-icon">🏢</div>
+        <div class="corp-title">الشركات الخاصة عامة</div>
+        <div class="corp-desc">تدريب فرق IT الداخلية، رفع الوعي الأمني لكل الموظفين، وبناء ثقافة أمنية داخل الشركة.</div>
+      </div>
+    </div>
+
+    <div class="corp-includes">
+      <h3>شنو يشمل البرنامج المؤسسي؟</h3>
+      <ul>
+        <li>تدريب حضوري أو أونلاين حسب حاجة المؤسسة</li>
+        <li>محتوى مخصص حسب طبيعة عمل الموظفين</li>
+        <li>شهادات إتمام باسم المشاركين</li>
+        <li>تقرير تقييم أمني ما بعد التدريب</li>
+        <li>إمكانية تدريب مجموعات بأعداد مختلفة</li>
+        <li>متابعة ودعم بعد انتهاء البرنامج</li>
+      </ul>
+    </div>
+
+    <div class="corp-cta">
+      <h3>تريد برنامج تدريبي لمؤسستك؟</h3>
+      <p>راسلنا وحدد نوع المؤسسة وعدد الموظفين المستهدفين، ونجهزلك عرض تدريبي مناسب.</p>
+      <a class="btn" href="https://wa.me/9647764271151?text=مرحبا، اريد الاستفسار عن برنامج تدريبي لمؤسستي" target="_blank" rel="noopener">اطلب عرض تدريبي</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>TechTalent Academy — مبادرة تدريبية في الأمن السيبراني</div>
+    <div class="mono" style="margin-top:6px;">@zano_security</div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/9647764271151" target="_blank" rel="noopener" aria-label="واتساب">💬</a>
+
+<!-- MODAL / DETAIL VIEW -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) ttClose()">
+  <div class="modal">
+    <button class="modal-close" onclick="ttClose()">✕</button>
+    <div class="modal-body">
+      <div class="detail-layout">
+
+        <div class="detail-content">
+          <div class="crumb" id="dCrumb"></div>
+          <h2 class="detail-title" id="dTitle"></h2>
+          <p class="detail-desc" id="dDesc"></p>
+
+          <div id="dEmployerNote"></div>
+
+          <h3 class="detail-h">مناسب لـ</h3>
+          <div class="skill-badges" id="dAudience"></div>
+
+          <h3 class="detail-h">المهارات المكتسبة</h3>
+          <div class="skill-badges" id="dSkills"></div>
+
+          <h3 class="detail-h">الشهادة بعد إتمام الدورة</h3>
+          <p class="detail-desc" id="dCert" style="max-width:100%;"></p>
+
+          <div id="dLabNote"></div>
+
+          <h3 class="detail-h">الأسئلة الشائعة</h3>
+          <div id="dFaq"></div>
+
+          <h3 class="detail-h">آراء المتدربين</h3>
+          <div class="testimonial-placeholder">
+            <div class="icn">💬</div>
+            <p>آراء المتدربين لهذا المسار قريبًا.</p>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <div class="price-card" id="dPriceCard"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const LEVELS = {
+  l1:{
+    tag:"مبتدئ · المستوى 1", title:"أساسيات الأمن السيبراني واكتشاف الثغرات",
+    desc:"ابدأ من الصفر: أساسيات الشبكات، الحاسوب، Linux، والأمن السيبراني — قبل أي شي متقدم.",
+    price:"49$", meta:"تدريب مسجّل · وصول دائم",
+    ctaText:"مرحبا، اريد التسجيل بالمستوى الاول",
+    audience:["المبتدئين تمامًا","طلبة الجامعات","تغيير المسار المهني","دخول المجال من الصفر"],
+    skills:["Networking","Kali Linux","Pentesting Basics","Vulnerability Discovery","Reporting"],
+    certificate:"شهادة إتمام دورة من TechTalent Academy.",
+    faq:[
+      {q:"هل احتاج خبرة سابقة بالبرمجة أو الشبكات؟", a:"لا، هذا المستوى مصمم من الصفر ويبني الأساس قبل أي شي متقدم."},
+      {q:"شكد مدة الوصول للمحتوى بعد الشراء؟", a:"وصول دائم — تراجع المادة بوقتك الخاص بدون حد زمني."},
+      {q:"شنو الخطوة اللي بعده؟", a:"بعد هذا المستوى تقدر تنتقل مباشرة للمستوى الثاني (اختبار الاختراق العملي / Bug Bounty)."}
+    ]
+  },
+  l2:{
+    tag:"مبتدئ → متوسط · المستوى 2", title:"اختبار الاختراق العملي — مسار Bug Bounty",
+    desc:"أول خطوة حقيقية نحو العمل الحر كفاحص ثغرات معتمد على منصات عالمية.",
+    price:"99$", meta:"53 فيديو مسجّل · متابعة 6 أشهر",
+    ctaText:"مرحبا، اريد التسجيل بالمستوى الثاني",
+    audience:["خريجي المستوى الأول","الراغبين بالعمل الحر (Freelance)","موظفي IT المبتدئين","محبي Bug Bounty"],
+    skills:["OWASP Top 10","Burp Suite","SQL Injection","XSS","Recon","Bug Bounty Reporting"],
+    certificate:"شهادة إتمام دورة من TechTalent Academy، مع جاهزية للتقديم على منصات Bug Bounty العالمية (HackerOne, Bugcrowd, YesWeHack).",
+    lab:"كل التطبيق العملي يتم داخل بيئات اختبار مرخصة (منصات تدريب رسمية أو أهداف مصرح باختبارها) — تحضيرًا للعمل الأخلاقي على منصات مثل HackerOne وBugcrowd وYesWeHack.",
+    faq:[
+      {q:"هل لازم أكون مبرمج حتى أبدأ هذا المستوى؟", a:"لا، ما يحتاج تكون محترف بالبرمجة أو مبرمج."},
+      {q:"شنو أهم متطلبات الحاسوب؟", a:"شاشة 14 إنش فأكثر، معالج i5 (جيل سادس فما فوق)، رام 8GB، هارد SSD 512، ويندوز 10."},
+      {q:"وين أقدر أشتغل بعد إنهاء المستوى؟", a:"تقدر تبدأ بتقديم تقارير ثغرات على منصات مثل HackerOne وBugcrowd وYesWeHack، أو التقديم على وظائف اختبار اختراق."}
+    ]
+  },
+  l3:{
+    tag:"متوسط · المستوى 3", title:"معسكر الأمن السيبراني التدريبي",
+    desc:"تطبيق عملي مباشر بإشراف مدرّب، شهرين مكثّفين — متوفر أيضًا بنسخة مسجّلة لمن يفضّل الدراسة بوقته الخاص.",
+    price:"190$", oldPrice:"210$", meta:"40–50 ساعة · 10–15 مقعد فقط",
+    deadline:"⏰ آخر تسجيل بسعر الخصم: 25-7 · يبدأ المعسكر 20-8",
+    ctaText:"مرحبا، اريد التسجيل بمعسكر الامن السيبراني",
+    audience:["من عنده أساس بسيط ويريد تطبيق عملي مكثّف","الطلبة الجادين","الموظفين الباحثين عن مسار مهني واضح"],
+    skills:["Networking","Linux","Penetration Testing","Web Vulnerabilities","Social Engineering","OpSec"],
+    certificate:"شهادة تخرج من TechTalent Academy، بالإضافة لشهادة تفوّق من أكسفورد للمتفوقين الأوائل حسب نظام تقييم المعسكر.",
+    faq:[
+      {q:"شنو الفرق بين النسخة المباشرة والمسجّلة؟", a:"المباشرة (210$ / 190$ بالخصم) بإشراف مباشر من المدرّب عبر Google Meet بمواعيد ثابتة (3 دروس أسبوعيًا، 8–10 مساءً بتوقيت العراق). المسجّلة (149$) نفس المحتوى بالكامل بوقتك الخاص."},
+      {q:"شنو شروط شهادة أكسفورد للمتفوقين؟", a:"تُمنح للمتفوقين الأوائل حسب نظام تقييم المعسكر (امتحانات وكوزات وتطبيقات) — التفاصيل الدقيقة تُشرح أول المعسكر."},
+      {q:"وياكم مقعد بس متوفر بالنسخة المباشرة؟", a:"10 إلى 15 مقعد فقط لضمان المتابعة والجودة."},
+      {q:"هل بكون جاهز لسوق العمل بعد المعسكر؟", a:"المعسكر يعطيك تدريب عملي مباشر تقدر تبني عليه للتقديم على وظائف الأمن السيبراني — الجاهزية الكاملة تعتمد أيضًا على مجهودك الشخصي بالتطبيق والمتابعة بعد التخرج."},
+      {q:"هل المعسكر مناسب للمبتدئين؟", a:"نعم، سواء كنت مبتدئ تمامًا أو عندك خبرة بسيطة، المعسكر ياخذك خطوة بخطوة من الأساسيات إلى مستوى تطبيقي جاهز."},
+      {q:"شنو تشمل رسوم المعسكر؟", a:"الرسوم تشمل التدريب الكامل (مباشر أو مسجّل)، شهادة التخرج، الدعم والمتابعة لمدة 6 أشهر، والوصول لبيئات التطبيق العملي."}
+    ]
+  },
+  l4:{
+    tag:"متقدم · المستوى 4", title:"Advanced Red Team Diploma",
+    desc:"المسار الاحترافي الكامل نحو Red Team — من الشبكات والبرمجة إلى الاختراق المتقدم.",
+    price:"يُعلن لاحقًا", meta:"50–60 ساعة مسجّلة · دعم سنة كاملة",
+    ctaText:"مرحبا، اريد الاستفسار عن Advanced Red Team Diploma",
+    ctaLabel:"استفسر عن السعر",
+    audience:["موظفي IT وفرق الأمن السيبراني","خريجي المستوى الثاني الراغبين بالتعمق","المتخصصين اللي يريدون التخصص في Red Team"],
+    employerNote:"مفضّل بشكل خاص لموظفي الشركات والمؤسسات الراغبين برفع مهاراتهم إلى مستوى Red Team احترافي داخل بيئة عملهم.",
+    skills:["Python","C++","JavaScript","Kali Professional","Advanced Web Security","Red Team Ops","OSINT مؤسسي"],
+    certificate:"دبلوم Advanced Red Team Diploma من TechTalent Academy.",
+    lab:"كل تدريبات الهندسة الاجتماعية، تحليل التجاوز، وOSINT تُنفَّذ حصريًا داخل بيئة مختبرية معزولة ومرخّصة (Authorized Lab Environment) — الهدف تعليمي ودفاعي بالكامل.",
+    faq:[
+      {q:"هل لازم أكمل المستويات السابقة أول؟", a:"يفضّل تكون أنهيت أساسيات اختبار الاختراق (المستوى 1 أو 2) قبل هذا الدبلوم لأنه مبني على مستوى متقدم."},
+      {q:"شنو مدة الدعم بعد الدبلوم؟", a:"دعم ومتابعة لمدة سنة كاملة بعد إنهاء الدبلوم."},
+      {q:"شلون أعرف السعر؟", a:"السعر رح يُعلن قريبًا — تواصل معنا على واتساب وننبهك فور الإعلان."}
+    ]
+  }
+};
+
+function ttOpen(id){
+  const L = LEVELS[id];
+  document.getElementById('dCrumb').textContent = L.tag;
+  document.getElementById('dTitle').textContent = L.title;
+  document.getElementById('dDesc').textContent = L.desc;
+  document.getElementById('dEmployerNote').innerHTML = L.employerNote
+    ? `<div class="employer-note">👔 <span><b>مناسب للموظفين:</b> ${L.employerNote}</span></div>` : '';
+  document.getElementById('dAudience').innerHTML = (L.audience || []).map(a=>`<span class="skill-badge">${a}</span>`).join('');
+  document.getElementById('dSkills').innerHTML = L.skills.map(s=>`<span class="skill-badge">${s}</span>`).join('');
+  document.getElementById('dCert').textContent = L.certificate || '';
+  document.getElementById('dLabNote').innerHTML = L.lab
+    ? `<div class="lab-note">🛡️ <span><b>ملاحظة مهمة:</b> ${L.lab}</span></div>` : '';
+  document.getElementById('dFaq').innerHTML = L.faq.map((f,i)=>`
+    <div class="accordion-item" id="acc-${id}-${i}">
+      <div class="accordion-q" onclick="ttAcc('${id}-${i}')">
+        <span>${f.q}</span><span class="arrow">◀</span>
+      </div>
+      <div class="accordion-a"><p>${f.a}</p></div>
+    </div>`).join('');
+  const priceHtml = L.oldPrice
+    ? `<div><span class="old-price mono">${L.oldPrice}</span><span class="price mono">${L.price}</span></div>`
+    : `<div class="price mono">${L.price}</div>`;
+  const deadlineHtml = L.deadline ? `<div class="deadline">${L.deadline}</div>` : '';
+  document.getElementById('dPriceCard').innerHTML = `
+    ${priceHtml}
+    <div class="meta-line">${L.meta}</div>
+    <a class="btn" href="https://wa.me/9647764271151?text=${encodeURIComponent(L.ctaText)}" target="_blank" rel="noopener">${L.ctaLabel || 'سجّل الآن'}</a>
+    ${deadlineHtml}
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function ttClose(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function ttAcc(key){
+  document.getElementById('acc-' + key).classList.toggle('open');
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') ttClose(); });
+
+/* ---- tab active-state on scroll ---- */
+const tabLinks = document.querySelectorAll('.tab-link');
+const tabSections = ['about','courses','corporate'].map(id=>document.getElementById(id));
+function updateActiveTab(){
+  let current = tabSections[0].id;
+  const scrollPos = window.scrollY + 90;
+  tabSections.forEach(sec=>{ if(sec.offsetTop <= scrollPos) current = sec.id; });
+  tabLinks.forEach(link=>{
+    link.classList.toggle('is-active', link.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActiveTab);
+updateActiveTab();
+</script>
+
+</body>
+</html>
