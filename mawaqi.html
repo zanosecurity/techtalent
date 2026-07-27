@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل مواقع التدريب العملي — TechTalent Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#D71920;
+    --cyan:#00C2FF;
+    --ink:#221620;
+    --ink-2:#2b1c29;
+    --glow: rgba(140,29,41,0.6);
+    --cream:#eef1fa;
+    --cream-dim:#a7aec2;
+    --line: rgba(255,255,255,0.1);
+    --card-bg: rgba(255,255,255,0.04);
+    --display: 'IBM Plex Sans Arabic', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 800px 500px at 15% -10%, var(--glow), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 110% 20%, rgba(215,25,32,0.18), transparent 60%),
+      var(--ink);
+    color:var(--cream);
+    font-family:var(--display);
+    font-weight:400;
+    line-height:1.75;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 16px;
+  }
+  .mono{font-family:var(--mono); direction:ltr; unicode-bidi:isolate;}
+
+  .panel{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:16px;
+    max-width:720px;
+    width:100%;
+    box-shadow:0 40px 100px rgba(0,0,0,0.5);
+  }
+  .panel-body{padding:40px 32px;}
+
+  .crumb{font-family:var(--mono); font-size:12px; color:var(--coral); letter-spacing:1px;}
+  .title{font-size:24px; font-weight:700; margin:12px 0 14px;}
+  .lede{color:var(--cream-dim); font-size:14.5px; font-weight:300; max-width:100%;}
+
+  .res-item{display:flex; gap:16px; padding:22px 0; border-bottom:1px solid var(--line);}
+  .res-item:first-child{padding-top:26px;}
+  .res-item:last-child{border-bottom:none; padding-bottom:0;}
+  .res-num{
+    flex:0 0 38px; height:38px; border-radius:50%; background:rgba(215,25,32,0.12);
+    border:1px solid rgba(215,25,32,0.4); color:var(--coral); font-family:var(--mono); font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .res-item-body{flex:1; min-width:0;}
+  .res-item-head{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-bottom:7px;}
+  .res-item-name{font-size:16px; font-weight:700; color:var(--cream);}
+  .res-badge{
+    font-family:var(--mono); font-size:10px; letter-spacing:.5px; text-transform:uppercase;
+    padding:4px 9px; border-radius:5px; white-space:nowrap;
+  }
+  .res-badge.beg{background:rgba(0,194,255,0.15); color:var(--cyan); border:1px solid rgba(0,194,255,0.35);}
+  .res-badge.mid{background:rgba(215,25,32,0.15); color:var(--coral); border:1px solid rgba(215,25,32,0.35);}
+  .res-item-desc{font-size:13.5px; color:var(--cream-dim); font-weight:300; line-height:1.85; margin-bottom:9px;}
+  .res-item-desc b{color:var(--cream); font-weight:600;}
+  .res-link{
+    font-family:var(--mono); font-size:12px; color:var(--cyan); text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .res-link:hover{text-decoration:underline;}
+
+  .note{
+    display:flex; gap:10px; align-items:flex-start; margin-top:20px;
+    background:rgba(0,194,255,0.07); border:1px solid rgba(0,194,255,0.3);
+    border-radius:8px; padding:12px 16px; font-size:12.5px; color:var(--cream-dim); font-weight:300;
+  }
+  .note b{color:var(--cyan); font-weight:600;}
+
+  .foot{
+    text-align:center; margin-top:22px; font-size:12px; color:var(--cream-dim); opacity:.75;
+  }
+
+  @media (max-width:480px){
+    .panel-body{padding:28px 20px;}
+    .title{font-size:20px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="panel" id="مواقع">
+    <div class="panel-body">
+      <div class="crumb">دليل مجاني</div>
+      <h1 class="title">مواقع تدريب عملي على الاختراق الأخلاقي</h1>
+      <p class="lede">خمس منصات نستخدمها فعليًا بتدريب طلاب TechTalent، بترتيب مقصود من الأسهل للأصعب. اقرأ كل وحدة كامل قبل ما تفتح الموقع — الترتيب هنا أهم من عدد المواقع اللي تفتحها.</p>
+
+      <div class="res-item">
+        <div class="res-num">١</div>
+        <div class="res-item-body">
+          <div class="res-item-head">
+            <span class="res-item-name">TryHackMe</span>
+            <span class="res-badge beg">تبدأ منه دايماً</span>
+          </div>
+          <p class="res-item-desc">منصة تدريب تفاعلية مصممة خصيصًا للمبتدئين، تعتمد مبدأ <b>التعلّم الموجّه</b>: كل مسار مقسّم لغرف (Rooms) تشرح لك المفهوم النظري أول، ثم تطبّقه مباشرة بنفس الصفحة، بدون ما تحتاج تجهّز أي بيئة بنفسك. هذا يبني عندك اللغة والمفاهيم الأساسية (الشبكات، أنظمة التشغيل، أدوات الفحص) بشكل تدريجي، قبل ما تواجه تحديات مفتوحة بلا توجيه.</p>
+          <a class="res-link" href="https://tryhackme.com" target="_blank" rel="noopener">tryhackme.com ↗</a>
+        </div>
+      </div>
+
+      <div class="res-item">
+        <div class="res-num">٢</div>
+        <div class="res-item-body">
+          <div class="res-item-head">
+            <span class="res-item-name">VulnHub</span>
+            <span class="res-badge beg">للمبتدئين</span>
+          </div>
+          <p class="res-item-desc">مكتبة مفتوحة المصدر لصور أجهزة افتراضية (VMs) مصممة عمدًا بثغرات أمنية. بعكس TryHackMe، <b>ما فيه توجيه ولا تلميحات</b> — تحمّل صورة الجهاز، تشغّلها على حاسوبك عبر VirtualBox، وتحاول تخترقها بجهدك الخاص بالكامل. هذا يبني أهم مهارة بالمجال: التفكير المستقل أمام نظام مجهول بدون خارطة طريق جاهزة.</p>
+          <a class="res-link" href="https://www.vulnhub.com" target="_blank" rel="noopener">vulnhub.com ↗</a>
+        </div>
+      </div>
+
+      <div class="res-item">
+        <div class="res-num">٣</div>
+        <div class="res-item-body">
+          <div class="res-item-head">
+            <span class="res-item-name">HackTheBox</span>
+            <span class="res-badge mid">بعد ما تثبّت الأساسيات</span>
+          </div>
+          <p class="res-item-desc">منصة احترافية بمستوى صعوبة تصاعدي، تحاكي أنظمة وشبكات حقيقية أعقد من TryHackMe. تحتوي تحديات (Machines) وتحديات CTF متنوعة، ومجتمع عالمي ضخم. تُستخدم أيضًا <b>كمعيار تقييم بسوق العمل</b> — كثير أرباب عمل يعرفون مستوى المهارة المطلوب لحل تحدياتها. الأنسب بعد إتقان الأساسيات، مو كنقطة بداية.</p>
+          <a class="res-link" href="https://www.hackthebox.com" target="_blank" rel="noopener">hackthebox.com ↗</a>
+        </div>
+      </div>
+
+      <div class="res-item">
+        <div class="res-num">٤</div>
+        <div class="res-item-body">
+          <div class="res-item-head">
+            <span class="res-item-name">PortSwigger Web Security Academy</span>
+            <span class="res-badge mid">تخصص Web Security</span>
+          </div>
+          <p class="res-item-desc">أشمل مصدر تعليمي مجاني بالعالم متخصص حصرًا بثغرات تطبيقات الويب (SQL Injection, XSS, CSRF وغيرها)، مبني من نفس الشركة المطوّرة لأداة <b>Burp Suite</b>، الأداة الأشهر عالميًا باختبار اختراق الويب. كل درس نظري مرفق بمختبر تطبيقي فعلي تحلّه مباشرة بالمتصفح. أساسي لمن يريد يتخصص بأمن الويب تحديدًا.</p>
+          <a class="res-link" href="https://portswigger.net/web-security" target="_blank" rel="noopener">portswigger.net/web-security ↗</a>
+        </div>
+      </div>
+
+      <div class="res-item">
+        <div class="res-num">٥</div>
+        <div class="res-item-body">
+          <div class="res-item-head">
+            <span class="res-item-name">GOAD (Game of Active Directory)</span>
+            <span class="res-badge mid">تخصص Red Team / AD</span>
+          </div>
+          <p class="res-item-desc">مشروع مفتوح المصدر يبني بيئة شبكة كاملة تحاكي بنية شركة حقيقية تستخدم <b>Active Directory</b> (النظام اللي تدير فيه أغلب الشركات حساباتها وصلاحياتها الداخلية)، مع أخطاء تكوين وثغرات واقعية مقصودة. يحتاج خبرة مسبقة بالشبكات وAD الأساسي — خطوة تخصص متقدمة لمن يتجه نحو Red Team أو اختبار الاختراق الداخلي للشركات.</p>
+          <a class="res-link" href="https://github.com/Orange-Cyberdefense/GOAD" target="_blank" rel="noopener">github.com/Orange-Cyberdefense/GOAD ↗</a>
+        </div>
+      </div>
+
+      <div class="note">💡 <span><b>نصيحة:</b> ضلّ بموقع وحد لين تثبّت فيه (تحل عدة تحديات مبتدئ بدون مساعدة) قبل ما تنتقل للي بعده. القفز بين المواقع بدون ثبات هو أكبر سبب يخلي المتعلم يشعر إنه ما يتقدم.</span></div>
+    </div>
+  </div>
+
+  <div class="foot">TechTalent Academy — زينب علي هادي</div>
+
+</body>
+</html>
