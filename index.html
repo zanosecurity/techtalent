@@ -236,6 +236,49 @@
   .testi-shot img{width:100%; display:block;}
 
   /* =====================================================
+     RESOURCES — free practice sites
+     ===================================================== */
+  .res-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media(max-width:900px){.res-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.res-grid{grid-template-columns:1fr;}}
+  .res-card{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:14px;
+    padding:22px 22px 20px; display:flex; flex-direction:column; gap:12px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .res-card:hover{border-color:rgba(215,25,32,0.5); transform:translateY(-2px);}
+  .res-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .res-name{font-size:16.5px; font-weight:700; color:var(--cream);}
+  .res-badge{
+    font-family:var(--mono); font-size:10px; letter-spacing:.5px; text-transform:uppercase;
+    padding:4px 9px; border-radius:5px; white-space:nowrap; flex-shrink:0;
+  }
+  .res-badge.beg{background:rgba(0,194,255,0.15); color:var(--cyan); border:1px solid rgba(0,194,255,0.35);}
+  .res-badge.mid{background:rgba(215,25,32,0.15); color:var(--coral); border:1px solid rgba(215,25,32,0.35);}
+  .res-desc{font-size:13.5px; color:var(--cream-dim); font-weight:300; flex:1;}
+  .res-link{
+    font-family:var(--mono); font-size:12.5px; color:var(--cyan); text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px; margin-top:4px;
+  }
+  .res-link:hover{text-decoration:underline;}
+
+  .res-item{
+    display:flex; gap:18px; padding:24px 0; border-bottom:1px solid var(--line);
+  }
+  .res-item:last-child{border-bottom:none; padding-bottom:0;}
+  .res-item:first-child{padding-top:0;}
+  .res-num{
+    flex:0 0 40px; height:40px; border-radius:50%; background:rgba(215,25,32,0.12);
+    border:1px solid rgba(215,25,32,0.4); color:var(--coral); font-family:var(--mono); font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .res-item-body{flex:1; min-width:0;}
+  .res-item-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+  .res-item-name{font-size:17px; font-weight:700; color:var(--cream);}
+  .res-item-desc{font-size:14px; color:var(--cream-dim); font-weight:300; line-height:1.85; margin-bottom:10px;}
+  .res-item-desc b{color:var(--cream); font-weight:600;}
+
+  /* =====================================================
      CORPORATE TAB
      ===================================================== */
   .corp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:36px;}
@@ -378,17 +421,17 @@
     </div>
     <div class="corp-grid">
       <div class="corp-card" style="text-align:center;">
-        <img src="persona-student.png" alt="طالب أو خريج جديد" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
+        <img src="icons/persona-student.png" alt="طالب أو خريج جديد" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
         <div class="corp-title">طالب أو خريج جديد</div>
         <div class="corp-desc">تبحث عن مستقبل واعد في الأمن السيبراني؟</div>
       </div>
       <div class="corp-card" style="text-align:center;">
-        <img src="persona-employee.png" alt="موظف تقني أو إداري" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
+        <img src="icons/persona-employee.png" alt="موظف تقني أو إداري" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
         <div class="corp-title">موظف تقني أو إداري</div>
         <div class="corp-desc">تريد تغيير مساراك المهني نحو مجال مطلوب عالميًا؟</div>
       </div>
       <div class="corp-card" style="text-align:center;">
-        <img src="persona-tech.png" alt="شغوف بالتقنية" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
+        <img src="icons/persona-tech.png" alt="شغوف بالتقنية" style="width:84px; height:84px; border-radius:16px; margin-bottom:14px;">
         <div class="corp-title">شغوف بالتقنية</div>
         <div class="corp-desc">وتريد تتعلم مجال يمنحك فرص فعلية بالسوق؟</div>
       </div>
@@ -451,6 +494,29 @@
         <div class="trust-item"><div class="n">Apple · DoD</div><div class="l">شكر رسمي على أبحاث أمنية</div></div>
       </div>
     </div>
+
+    <div class="section-head" style="margin-bottom:24px;">
+      <h2 style="font-size:19px;">مواقع تدريب عملي مجانية</h2>
+      <p style="font-size:14px;">خمس منصات نستخدمها فعليًا بالتدريب، بترتيب من الأسهل للأصعب — مع شرح كامل لكل موقع ووقت الانتقال منه للي بعده.</p>
+    </div>
+    <article class="level-card" onclick="ttOpenRes()" style="border-color:rgba(0,194,255,0.35); margin-bottom:40px;">
+      <div class="level-head">
+        <div>
+          <span class="level-tag" style="background:var(--cyan); color:var(--ink);">دليل مجاني</span>
+          <div class="level-title">دليل مواقع التدريب العملي — من الصفر للاحتراف</div>
+          <div class="level-sub">5 منصات، شرح كامل مناسب للمبتدئين، وترتيب واضح لكل مرحلة</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="topics-preview">
+          <span>TryHackMe</span><span>VulnHub</span><span>HackTheBox</span><span>PortSwigger</span><span>GOAD</span>
+        </div>
+        <div class="level-footer">
+          <div class="who">📖 اضغط لفتح الدليل الكامل</div>
+          <button class="btn details" onclick="event.stopPropagation(); ttOpenRes()">افتح الدليل ↗</button>
+        </div>
+      </div>
+    </article>
 
     <!-- LEVEL 0 CARD — FREE -->
     <article class="level-card" onclick="ttOpen('l0')" style="border-color:rgba(0,194,255,0.35);">
@@ -603,7 +669,7 @@
       <div class="hero-grid">
         <div class="badge-card">
           <div class="badge-notch"></div>
-          <div class="badge-photo"><img src="zainab-profile.png" alt="زينب علي هادي"></div>
+          <div class="badge-photo"><img src="icons/zainab-profile.png" alt="زينب علي هادي"></div>
           <div class="badge-footer mono">TechTalent Academy</div>
         </div>
 
@@ -916,6 +982,86 @@
   </div>
 </div>
 
+<!-- RESOURCES MODAL -->
+<div class="modal-overlay" id="resModalOverlay" onclick="if(event.target===this) ttCloseRes()">
+  <div class="modal" style="max-width:720px;">
+    <button class="modal-close" onclick="ttCloseRes()">✕</button>
+    <div class="modal-body">
+      <div class="crumb">دليل مجاني</div>
+      <h2 class="detail-title">مواقع تدريب عملي على الاختراق الأخلاقي</h2>
+      <p class="detail-desc" style="max-width:100%;">خمس منصات نستخدمها فعليًا بتدريب طلاب TechTalent، بترتيب مقصود من الأسهل للأصعب. اقرأ كل وحدة كامل قبل ما تفتح الموقع — الترتيب هنا أهم من عدد المواقع اللي تفتحها.</p>
+
+      <div style="margin-top:28px;">
+
+        <div class="res-item">
+          <div class="res-num">١</div>
+          <div class="res-item-body">
+            <div class="res-item-head">
+              <span class="res-item-name">TryHackMe</span>
+              <span class="res-badge beg">تبدأ منه دايماً</span>
+            </div>
+            <p class="res-item-desc">منصة تدريب تفاعلية مصممة خصيصًا للمبتدئين، تعتمد مبدأ <b>التعلّم الموجّه</b>: كل مسار مقسّم لغرف (Rooms) تشرح لك المفهوم النظري أول، ثم تطبّقه مباشرة بنفس الصفحة، بدون ما تحتاج تجهّز أي بيئة بنفسك. هذا يبني عندك اللغة والمفاهيم الأساسية (الشبكات، أنظمة التشغيل، أدوات الفحص) بشكل تدريجي، قبل ما تواجه تحديات مفتوحة بلا توجيه.</p>
+            <a class="res-link" href="https://tryhackme.com" target="_blank" rel="noopener">tryhackme.com ↗</a>
+          </div>
+        </div>
+
+        <div class="res-item">
+          <div class="res-num">٢</div>
+          <div class="res-item-body">
+            <div class="res-item-head">
+              <span class="res-item-name">VulnHub</span>
+              <span class="res-badge beg">للمبتدئين</span>
+            </div>
+            <p class="res-item-desc">مكتبة مفتوحة المصدر لصور أجهزة افتراضية (VMs) مصممة عمدًا بثغرات أمنية. بعكس TryHackMe، <b>ما فيه توجيه ولا تلميحات</b> — تحمّل صورة الجهاز، تشغّلها على حاسوبك عبر VirtualBox، وتحاول تخترقها بجهدك الخاص بالكامل. هذا يبني أهم مهارة بالمجال: التفكير المستقل أمام نظام مجهول بدون خارطة طريق جاهزة.</p>
+            <a class="res-link" href="https://www.vulnhub.com" target="_blank" rel="noopener">vulnhub.com ↗</a>
+          </div>
+        </div>
+
+        <div class="res-item">
+          <div class="res-num">٣</div>
+          <div class="res-item-body">
+            <div class="res-item-head">
+              <span class="res-item-name">HackTheBox</span>
+              <span class="res-badge mid">بعد ما تثبّت الأساسيات</span>
+            </div>
+            <p class="res-item-desc">منصة احترافية بمستوى صعوبة تصاعدي، تحاكي أنظمة وشبكات حقيقية أعقد من TryHackMe. تحتوي تحديات (Machines) وتحديات CTF متنوعة، ومجتمع عالمي ضخم. تُستخدم أيضًا <b>كمعيار تقييم بسوق العمل</b> — كثير أرباب عمل يعرفون مستوى المهارة المطلوب لحل تحدياتها. الأنسب بعد إتقان الأساسيات، مو كنقطة بداية.</p>
+            <a class="res-link" href="https://www.hackthebox.com" target="_blank" rel="noopener">hackthebox.com ↗</a>
+          </div>
+        </div>
+
+        <div class="res-item">
+          <div class="res-num">٤</div>
+          <div class="res-item-body">
+            <div class="res-item-head">
+              <span class="res-item-name">PortSwigger Web Security Academy</span>
+              <span class="res-badge mid">تخصص Web Security</span>
+            </div>
+            <p class="res-item-desc">أشمل مصدر تعليمي مجاني بالعالم متخصص حصرًا بثغرات تطبيقات الويب (SQL Injection, XSS, CSRF وغيرها)، مبني من نفس الشركة المطوّرة لأداة <b>Burp Suite</b>، الأداة الأشهر عالميًا باختبار اختراق الويب. كل درس نظري مرفق بمختبر تطبيقي فعلي تحلّه مباشرة بالمتصفح. أساسي لمن يريد يتخصص بأمن الويب تحديدًا.</p>
+            <a class="res-link" href="https://portswigger.net/web-security" target="_blank" rel="noopener">portswigger.net/web-security ↗</a>
+          </div>
+        </div>
+
+        <div class="res-item">
+          <div class="res-num">٥</div>
+          <div class="res-item-body">
+            <div class="res-item-head">
+              <span class="res-item-name">GOAD (Game of Active Directory)</span>
+              <span class="res-badge mid">تخصص Red Team / AD</span>
+            </div>
+            <p class="res-item-desc">مشروع مفتوح المصدر يبني بيئة شبكة كاملة تحاكي بنية شركة حقيقية تستخدم <b>Active Directory</b> (النظام اللي تدير فيه أغلب الشركات حساباتها وصلاحياتها الداخلية)، مع أخطاء تكوين وثغرات واقعية مقصودة. يحتاج خبرة مسبقة بالشبكات وAD الأساسي — خطوة تخصص متقدمة لمن يتجه نحو Red Team أو اختبار الاختراق الداخلي للشركات.</p>
+            <a class="res-link" href="https://github.com/Orange-Cyberdefense/GOAD" target="_blank" rel="noopener">github.com/Orange-Cyberdefense/GOAD ↗</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="employer-note" style="margin-top:8px;">
+        💡 <span><b>نصيحة:</b> ضلّ بموقع وحد لين تثبّت فيه (تحل عدة تحديات مبتدئ بدون مساعدة) قبل ما تنتقل للي بعده. القفز بين المواقع بدون ثبات هو أكبر سبب يخلي المتعلم يشعر إنه ما يتقدم.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 const LEVELS = {
   l0:{
@@ -1073,7 +1219,15 @@ function ttClose(){
 function ttAcc(key){
   document.getElementById('acc-' + key).classList.toggle('open');
 }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') ttClose(); });
+function ttOpenRes(){
+  document.getElementById('resModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function ttCloseRes(){
+  document.getElementById('resModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ ttClose(); ttCloseRes(); } });
 
 /* ---- tab active-state on scroll ---- */
 const tabLinks = document.querySelectorAll('.tab-link');
