@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خارطة طريق SOC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#221620;
+    --plum:#2b1a26;
+    --plum-2:#33202f;
+    --maroon:#6B0F1A;
+    --maroon-light:#8C1D29;
+    --event-a:#4a0a12;
+    --event-b:#6B0F1A;
+    --coral:#D71920;
+    --coral-dim:#B31119;
+    --sky:#00C2FF;
+    --paper:#eef1fa;
+    --paper-dim:#a7aec2;
+    --paper-faint:#c3c9db;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.1);
+    --line: rgba(255,255,255,0.1);
+    --capsule-bg:#F5F0F1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(1200px 800px at 15% -10%, var(--maroon) 0%, transparent 55%),
+                radial-gradient(900px 700px at 110% 10%, rgba(0,194,255,0.14) 0%, transparent 50%),
+                radial-gradient(700px 500px at 50% 40%, #8C1D2999 0%, transparent 60%),
+                var(--ink);
+    color: var(--paper);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing: 0.02em; }
+
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 24px 100px; }
+
+  /* HERO */
+  .hero{
+    padding: 72px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em;
+    color: var(--coral-dim);
+    background: var(--capsule-bg);
+    border: 1px solid var(--coral);
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 22px;
+  }
+  .tag .dot{ width:7px; height:7px; border-radius:50%; background: var(--coral); box-shadow: 0 0 8px var(--coral); }
+  .hero h1{
+    font-size: clamp(34px, 6vw, 54px);
+    font-weight: 900;
+    margin: 0 0 14px;
+    line-height: 1.15;
+  }
+  .hero h1 span{ color: var(--coral); }
+  .hero p{
+    color: var(--paper-dim);
+    font-size: 17px;
+    max-width: 60ch;
+    margin: 0;
+  }
+  .hero-meta{
+    margin-top: 28px;
+    display:flex; gap:22px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--paper-dim);
+  }
+  .hero-meta b{ color: var(--paper); font-weight:600; }
+
+  /* SECTION */
+  section{ padding: 52px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .sec-head{ display:flex; align-items:baseline; gap:14px; margin-bottom: 28px; }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--coral);
+    background: rgba(215,25,32,0.12);
+    border: 1px solid rgba(215,25,32,0.3);
+    padding: 3px 10px; border-radius: 6px;
+  }
+  .sec-head h2{ font-size: 24px; font-weight: 700; margin:0; }
+  .sec-desc{ color: var(--paper-dim); font-size: 15px; margin: -14px 0 26px; max-width: 58ch; }
+
+  /* FOUNDATIONS LIST */
+  .foundations{ display:grid; gap:12px; }
+  .f-item{
+    display:flex; align-items:center; gap:14px;
+    padding: 14px 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+  }
+  .f-item .chk{
+    width: 20px; height:20px; flex:none;
+    border-radius:5px;
+    border: 1.5px solid var(--sky);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--sky); font-size: 12px; font-family:'IBM Plex Mono', monospace;
+  }
+  .f-item span{ font-size:15px; }
+
+  /* ALERT QUEUE (labs) */
+  .queue{ display:grid; gap:14px; }
+  .alert{
+    position:relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-inline-start: 4px solid var(--coral);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px 16px;
+  }
+  .alert.sev-start{ border-inline-start-color: var(--sky); }
+  .alert.sev-mid{ border-inline-start-color: var(--coral); }
+  .alert.sev-deep{ border-inline-start-color: var(--maroon-light); }
+  .alert-top{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .alert-name{ font-weight:700; font-size:16.5px; }
+  .alert-name a{ color: var(--paper); text-decoration:none; border-bottom: 1px dashed rgba(238,241,250,0.35); }
+  .alert-name a:hover{ color: var(--coral); border-color: var(--coral); }
+  .badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px; letter-spacing:.05em;
+    padding: 3px 9px; border-radius: 100px;
+    background: var(--capsule-bg);
+    border: 1px solid var(--sky);
+    color: var(--ink);
+  }
+  .badge.start{ border-color: var(--sky); }
+  .badge.mid{ border-color: var(--coral); }
+  .badge.deep{ border-color: var(--coral-dim); }
+  .alert-desc{ grid-column: 1 / -1; color: var(--paper-dim); font-size: 14px; margin:0; }
+  .alert-order{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px; color: var(--paper-faint);
+    align-self:start; white-space:nowrap;
+  }
+
+  .flow-note{
+    margin-top: 22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--sky);
+    background: rgba(0,194,255,0.07);
+    border: 1px dashed rgba(0,194,255,0.35);
+    border-radius: 10px;
+    padding: 14px 18px;
+    line-height:1.9;
+  }
+
+  /* CERT PATH */
+  .path{ position:relative; padding-inline-start: 26px; }
+  .path::before{
+    content:''; position:absolute; inset-inline-start: 9px; top:6px; bottom:6px;
+    width: 2px; background: linear-gradient(var(--event-a), var(--event-b));
+  }
+  .path-item{ position:relative; padding-bottom: 26px; }
+  .path-item:last-child{ padding-bottom:0; }
+  .path-item::before{
+    content:''; position:absolute; inset-inline-start: -22px; top:4px;
+    width:12px; height:12px; border-radius:50%;
+    background: var(--ink); border: 2px solid var(--coral);
+  }
+  .path-item h3{ margin:0 0 6px; font-size:16.5px; }
+  .path-item p{ margin:0; color:var(--paper-dim); font-size:14px; }
+  .path-item .lvl{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--coral); margin-inline-start:8px; }
+
+  /* TOOLS GRID */
+  .tools{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:14px; }
+  .tool{
+    background: var(--card-bg); border:1px solid var(--card-border); border-radius:10px;
+    padding: 16px 18px;
+  }
+  .tool .k{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--sky); letter-spacing:.08em; margin-bottom:6px; display:block;}
+  .tool h4{ margin:0 0 6px; font-size:15.5px; }
+  .tool p{ margin:0; color:var(--paper-dim); font-size:13.5px; }
+
+  footer{
+    padding: 40px 0 0;
+    color: var(--paper-faint);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-align:center;
+  }
+
+  @media (max-width: 560px){
+    .alert{ grid-template-columns: 1fr; }
+    .alert-order{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="tag"><span class="dot"></span> TechTalent Academy — SOC Track</div>
+    <h1>خارطة طريق <span>SOC</span> كاملة</h1>
+    <p>مو بس قائمة مصادر — ترتيب فعلي: وين تبدأ، وين تتوقف قبل ما تنتقل، وشنو يوصلك فرصة حقيقية.</p>
+    <div class="hero-meta">
+      <span><b>٤</b> مراحل</span>
+      <span><b>٥</b> منصات لابات</span>
+      <span><b>٥</b> شهادات</span>
+      <span><b>٥</b> أدوات أساسية</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="sec-num mono">٠١</span><h2>الأساسيات</h2></div>
+    <p class="sec-desc">قبل أي لاب أو شهادة، هذا اللي لازم يكون عندك أساس فيه — بدونه أي أداة تتعلمها بعدها تصير حفظ بلا فهم.</p>
+    <div class="foundations">
+      <div class="f-item"><span class="chk">✓</span><span>الشبكات — TCP/IP، بورتات، بروتوكولات</span></div>
+      <div class="f-item"><span class="chk">✓</span><span>أنظمة التشغيل — ويندوز ولينكس، وفهم الـ Event Logs</span></div>
+      <div class="f-item"><span class="chk">✓</span><span>مفاهيم أمن سيبراني عامة — CIA Triad، أنواع الهجمات الشائعة</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num mono">٠٢</span><h2>لابات عملية</h2></div>
+    <p class="sec-desc">كل منصة إلها دور مختلف — مرتبة هنا بالضبط بالترتيب اللي تنتقل فيه من وحدة للثانية.</p>
+
+    <div class="queue">
+      <div class="alert sev-start">
+        <div class="alert-top">
+          <span class="alert-name"><a href="https://tryhackme.com" target="_blank" rel="noopener">TryHackMe — SOC Level 1 Path</a></span>
+          <span class="badge start">ابدأ هنا</span>
+        </div>
+        <span class="alert-order mono">١ / ٥</span>
+        <p class="alert-desc">أفضل نقطة بداية للمبتدئين — مسارات موجّهة خطوة بخطوة، فيها شهادة SAL1 عند الإكمال.</p>
+      </div>
+
+      <div class="alert sev-mid">
+        <div class="alert-top">
+          <span class="alert-name"><a href="https://letsdefend.io" target="_blank" rel="noopener">LetsDefend</a></span>
+          <span class="badge mid">تدريب أسبوعي</span>
+        </div>
+        <span class="alert-order mono">٢ / ٥</span>
+        <p class="alert-desc">يحاكي صندوق تنبيهات SOC حقيقي — تستلم تنبيه، تحقق فيه، وتقرر تصعّد أو تقفل. نسخة مجانية قوية.</p>
+      </div>
+
+      <div class="alert sev-mid">
+        <div class="alert-top">
+          <span class="alert-name"><a href="https://hackthebox.com" target="_blank" rel="noopener">Hack The Box — Sherlocks</a></span>
+          <span class="badge mid">واقعي أكثر</span>
+        </div>
+        <span class="alert-order mono">٣ / ٥</span>
+        <p class="alert-desc">تحديات تحقيق بأسلوب سردي — دليل، أسئلة، تلقى السبب الجذري. صعوبة تدريجية.</p>
+      </div>
+
+      <div class="alert sev-deep">
+        <div class="alert-top">
+          <span class="alert-name"><a href="https://blueteamlabs.online" target="_blank" rel="noopener">Blue Team Labs Online</a></span>
+          <span class="badge deep">عمق تحقيقي</span>
+        </div>
+        <span class="alert-order mono">٤ / ٥</span>
+        <p class="alert-desc">تحديات أسبوعية بأسلوب CTF دفاعي بحت — ممتاز لبناء بورتفوليو write-ups تعرضه بالمقابلة.</p>
+      </div>
+
+      <div class="alert sev-deep">
+        <div class="alert-top">
+          <span class="alert-name"><a href="https://cyberdefenders.org" target="_blank" rel="noopener">CyberDefenders</a></span>
+          <span class="badge deep">جنائي رقمي</span>
+        </div>
+        <span class="alert-order mono">٥ / ٥</span>
+        <p class="alert-desc">تحديات تحقيق رقمي (DFIR) بأدلة جنائية حقيقية — للي يتجه نحو تحقيقات متقدمة.</p>
+      </div>
+    </div>
+
+    <div class="flow-note">$ الترتيب المقترح → TryHackMe (أساس) → LetsDefend (فرز أسبوعي) → HackTheBox / BTLO / CyberDefenders (عمق تحقيقي بعد ما تثبت الأساس)</div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num mono">٠٣</span><h2>الشهادات</h2></div>
+    <p class="sec-desc">مرتبة بنفس تسلسل الأولوية — مو كل شهادة تحتاجها بنفس الوقت.</p>
+    <div class="path">
+      <div class="path-item">
+        <h3>CompTIA Security+ <span class="lvl">مبتدئ</span></h3>
+        <p>الشهادة الأساسية اللي أغلب أنظمة فرز السير الذاتية (ATS) تدور عليها — بوابة الدخول الأولى.</p>
+      </div>
+      <div class="path-item">
+        <h3>Blue Team Level 1 (BTL1) <span class="lvl">مبتدئ–متوسط</span></h3>
+        <p>شهادة عملية بالكامل — تحقيقات فعلية، مو أسئلة اختيار من متعدد. إثبات مهارة تطبيقية حقيقية.</p>
+      </div>
+      <div class="path-item">
+        <h3>CompTIA CySA+ <span class="lvl">متوسط</span></h3>
+        <p>الخطوة المنطقية بعد Security+ — تركز على كشف التهديدات وتحليل السجلات والاستجابة.</p>
+      </div>
+      <div class="path-item">
+        <h3>Microsoft SC-200 <span class="lvl">متوسط</span></h3>
+        <p>لو الشركة تستخدم Microsoft Sentinel/Defender — شهادة رخيصة نسبياً وعملية جداً.</p>
+      </div>
+      <div class="path-item">
+        <h3>GIAC GCIH <span class="lvl">متقدم</span></h3>
+        <p>للاستجابة للحوادث تحديداً — غالباً تُدرس بعد سنة أو سنتين خبرة فعلية بالسوق.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num mono">٠٤</span><h2>الأدوات</h2></div>
+    <p class="sec-desc">هذي اللي تفتحها فعلياً بأول يوم شغل — تعرف اسمها ما يكفي، لازم تشتغل بيها.</p>
+    <div class="tools">
+      <div class="tool"><span class="k">SIEM</span><h4>Splunk / Microsoft Sentinel</h4><p>جمع الـLogs ومراقبة التنبيهات — عندهم نسخة مجانية للتدريب.</p></div>
+      <div class="tool"><span class="k">NETWORK</span><h4>Wireshark</h4><p>تحليل حركة الشبكة حزمة حزمة، تكتشف الاتصالات المشبوهة.</p></div>
+      <div class="tool"><span class="k">WINDOWS</span><h4>Sysmon + Event Viewer</h4><p>تعرف شنو صار داخل الجهاز فعلياً.</p></div>
+      <div class="tool"><span class="k">TRIAGE</span><h4>VirusTotal + Any.Run</h4><p>فحص ملفات وروابط مشبوهة بسرعة، وتشغيلها بـSandbox آمن.</p></div>
+      <div class="tool"><span class="k">DFIR</span><h4>Velociraptor</h4><p>جمع الأدلة من الأجهزة المصابة للتحقيق الرقمي.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    الأسعار والتفاصيل قابلة للتغيير من مصدرها الرسمي — تأكد من الموقع الرسمي لكل منصة/شهادة وقت التسجيل · TechTalent Academy
+
+  
+  </footer>
+
+</div>
+</body>
+</html>
