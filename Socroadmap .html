@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>خارطة طريق SOC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#221620;
@@ -34,7 +35,8 @@
                 radial-gradient(700px 500px at 50% 40%, #8C1D2999 0%, transparent 60%),
                 var(--ink);
     color: var(--paper);
-    font-family: 'Cairo', sans-serif;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-weight: 400;
     line-height: 1.7;
     min-height: 100vh;
   }
@@ -60,7 +62,7 @@
   .tag .dot{ width:7px; height:7px; border-radius:50%; background: var(--coral); box-shadow: 0 0 8px var(--coral); }
   .hero h1{
     font-size: clamp(34px, 6vw, 54px);
-    font-weight: 900;
+    font-weight: 700;
     margin: 0 0 14px;
     line-height: 1.15;
   }
@@ -319,16 +321,24 @@
       <div class="tool"><span class="k">WINDOWS</span><h4>Sysmon + Event Viewer</h4><p>تعرف شنو صار داخل الجهاز فعلياً.</p></div>
       <div class="tool"><span class="k">TRIAGE</span><h4>VirusTotal + Any.Run</h4><p>فحص ملفات وروابط مشبوهة بسرعة، وتشغيلها بـSandbox آمن.</p></div>
       <div class="tool"><span class="k">DFIR</span><h4>Velociraptor</h4><p>جمع الأدلة من الأجهزة المصابة للتحقيق الرقمي.</p></div>
+    </div>
+  </section>
 
-      🎯 <span><b>خمس مواقع تكفيك تتدرب لحالك، بس التطبيق المكثّف بإشراف مدرّب يوفّرلك شهور.</b> معسكر الأمن السيبراني يبدأ 20-8، 10–15 مقعد بس بالنسخة المباشرة — والتسجيل بسعر الخصم يسكر قريب.
-        <br><a class="res-link" style="margin-top:8px;" href="index.html#l3">شوف تفاصيل المعسكر والمقاعد المتبقية ↗</a></span>
+  <section style="border-bottom:none; padding-bottom:0;">
+    <div class="sec-head"><span class="sec-num mono">٠٥</span><h2>وين تشوف كل هذا مطبّق سوا</h2></div>
+    <div style="background:rgba(215,25,32,0.08); border:1px solid rgba(215,25,32,0.3); border-radius:12px; padding:20px 22px;">
+      <p style="margin:0 0 12px; font-size:15px; color:var(--paper);">
+        <b>هذي خارطة الطريق تكفيك تتدرب لحالك — بس التطبيق المكثّف بإشراف مدرّب يوفّرلك شهور.</b><br>
+        معسكر الأمن السيبراني يبدأ ٢٠-٨، ١٠–١٥ مقعد بس بالنسخة المباشرة، والتسجيل بسعر الخصم يسكر قريب.
+      </p>
+      <a href="index.html#l3" style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--coral); text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+        شوف تفاصيل المعسكر وباقي الدورات ↗
+      </a>
     </div>
   </section>
 
   <footer>
     الأسعار والتفاصيل قابلة للتغيير من مصدرها الرسمي — تأكد من الموقع الرسمي لكل منصة/شهادة وقت التسجيل · TechTalent Academy
-
-  
   </footer>
 
 </div>
